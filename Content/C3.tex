@@ -2,15 +2,217 @@
 
 \section[Day 3: Vector-Valued Functions]{ Vector-Valued Functions }
 
+\subsection{ Parametrized Curves }
+
+    \begin{definition}{Path}{14cm}
+        A {\color{lblue} path} in $\mathbb{R}^n$ is a continuous
+        C(t): [a,b] $\rightarrow$ $\mathbb{R}^n$.
+
+        \vspace{0.3cm}
+        If C(t) is twice-differentiable, then the
+        {\color{lblue} velocity} of C(t) at $t_0$ $\in$ [a,b]:
+
+        \hspace{0.5cm}
+        v($t_0$) = x'($t_0$)
+        
+        Also, the aceleration of C(t) at $t_0$ $\in$ [a,b]:
+
+        \hspace{0.5cm}
+        a($t_0$) = x''($t_0$)
+    \end{definition}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{definition}{Arclength}{14cm}
+        The length of a $C^1$ path C(t): [a,b] $\rightarrow$ $\mathbb{R}^n$:
+
+        \hspace{0.5cm}
+        L = $\int_a^b$ $||C'(t)||$ dt
+    \end{definition}
+
+    \begin{proof}
+        Choose \{$x_1,...,x_n$\} $\in$ [a,b] such that each $x_i$ $<$ $x_{i+1}$.
+        Then the length of C(t):
+
+        \hspace{0.5cm}
+        L = $\lim_{n \rightarrow \infty}$ $\sum_{i=1}^n$ $||C(x_i) - C(x_{i-1})||$
+
+        Let each C($x_i$) = $(C_1(x_i),...,C_n(x_i))$. Thus:
+        
+        \hspace{0.5cm}
+        $||C(x_i) - C(x_{i-1})||$
+        = $\sqrt{(C_1(x_i)-C_1(x_{i-1}))^2 + ... + (C_n(x_i)-C_n(x_{i-1}))^2}$
+
+        Since C(t) is $C^1$, by the Mean Value Theorem,
+        there is a $t_{i_k}$ $\in$ $[x_{i+1},x_i]$ such that:
+
+        \hspace{0.5cm}
+        $C_k(x_i) - C_k(x_{i-1})$
+        = $(x_i - x_{i-1})C_1'(t_{i_k})$
+
+        Thus:
+
+        \hspace{0.5cm}
+        $||C(x_i) - C(x_{i-1})||$
+        = $\sqrt{(x_i-x_{i-1})^2[C_1'(t_{i_1})]^2
+                + ... + (x_i-x_{i-1})^2[C_1'(t_{i_n})]^2}$
+
+        \hspace{0.5cm}
+        L = $\lim_{n \rightarrow \infty}$ $\sum_{i=1}^n$
+            $\sqrt{[C_1'(t_{i_1})]^2 + ... + [C_1'(t_{i_n})]^2}(x_i - x_{i-1})$
+        
+        \hspace{0.9cm}
+        = $\int_a^b$ $\sqrt{[C_1'(t)]^2 + ... + [C_n'(t)]^2}$ dt
+        = $\int_a^b$ $||C'(t)||$ dt 
+    \end{proof}
+
+    \vspace{0.5cm}
 
 
 
 
 
+\subsection{ Vector Fields }
+
+    \begin{definition}{Vector Field and Flow Lines}{14cm}
+        A {\color{lblue} vector field} on $\mathbb{R}^n$ is
+        F: X $\subset$ $\mathbb{R}^n$ $\rightarrow$ $\mathbb{R}^n$
+
+        \vspace{0.5cm}
+
+        A {\color{lblue} flow line} of vector field F
+        is a differentiable path C(t): [a,b] $\rightarrow$ $\mathbb{R}^n$
+        such that:
+
+        \hspace{0.5cm}
+        C'(t) = F(C(t))
+    \end{definition}
+
+    \vspace{0.5cm}
 
 
 
+    \begin{definition}{Del Operator}{14cm}
+        The {\color{lblue} Del Operator} on $\mathbb{R}^n$:
+        
+        \hspace{0.5cm}
+        $\nabla$ = $\sum_{i=1}^n$ $\frac{\partial}{\partial x_i}e_i$
+        = $(\frac{\partial}{\partial x_1},...,\frac{\partial}{\partial x_n})$
+    \end{definition}
 
+    \vspace{0.5cm}
+
+
+
+    \begin{definition}{Divergence}{14cm}
+        For differentiable vector field F: X $\subset$ $\mathbb{R}^n$
+        $\rightarrow$ $\mathbb{R}^n$, let F = $(F_1,...,F_n)$.
+
+        Then the {\color{lblue} divergence}, div:
+        $\mathbb{R}^n$ $\rightarrow$ $\mathbb{R}$, of F:
+
+        \hspace{0.5cm}
+        div(F)
+        = $\nabla$ $\cdot$ F
+        = $\frac{\partial F_1}{\partial x_1}
+                + ... + \frac{\partial F_n}{\partial x_n}$
+
+        If div(F) = 0 everywhere, then F is incompressible.
+    \end{definition}
+
+    \newpage
+
+
+
+    \begin{definition}{Curl}{14cm}
+        For differentiable vector field F: X $\subset$ $\mathbb{R}^3$
+        $\rightarrow$ $\mathbb{R}^3$, let F = $(F_1,F_2,F_3)$.
+
+        Then the {\color{lblue} curl}, curl:
+        $\mathbb{R}^n$ $\rightarrow$ $\mathbb{R}^n$, of F: 
+
+        \hspace{0.5cm}
+        curl(F)
+        = $\nabla$ $\times$ F =
+        $
+        \begin{bmatrix}
+            e_1 & e_2 & e_3 \\
+            \frac{\partial}{\partial x} & \frac{\partial}{\partial y}
+                & \frac{\partial}{\partial z} \\
+            F_1 & F_2 & F_3
+        \end{bmatrix}
+        $
+        = ($\frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z} \ , \
+            \frac{\partial F_1}{\partial z}-\frac{\partial F_3}{\partial x} \ , \
+            \frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}$)
+
+        If curl(F) = 0 everywhere, then F is irrotational.
+    \end{definition}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{wtheorem}{Vector fields from Gradients are irrotational}{14cm}
+        If f: X $\subset$ $\mathbb{R}^3$ $\rightarrow$ $\mathbb{R}$
+        is $C^2$, then curl($\nabla f$) = 0
+    \end{wtheorem}
+
+    \begin{proof}
+        Since $\nabla f$
+        = $(\frac{\partial f}{\partial x},
+            \frac{\partial f}{\partial y},
+            \frac{\partial f}{\partial z})$,
+        then by {\color{red} theorem 2.3.9}:
+
+        \hspace{0.5cm}
+        curl($\nabla f$) =
+        $
+        \begin{bmatrix}
+            e_1 & e_2 & e_3 \\
+            \frac{\partial}{\partial x} & \frac{\partial}{\partial y}
+                & \frac{\partial}{\partial z} \\
+            \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y}
+                & \frac{\partial f}{\partial z}
+        \end{bmatrix}
+        $
+        = ($\frac{\partial^2 f}{\partial y\partial z}
+                - \frac{\partial^2 f}{\partial z\partial y} \ , \
+            \frac{\partial^2 f}{\partial z\partial x}
+                - \frac{\partial^2 f}{\partial x\partial z} \ , \
+            \frac{\partial^2 f}{\partial x\partial y}
+                - \frac{\partial^2 f}{\partial y\partial x}$)
+        = 0
+    \end{proof}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{wtheorem}{The curl is incompressible}{14cm}
+        If F: X $\subset$ $\mathbb{R}^3$ $\rightarrow$ $\mathbb{R}^3$
+        is $C^2$, then div(curl(F)) = 0
+    \end{wtheorem}
+
+    \begin{proof}
+        Since curl(F)
+        = ($\frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z} \ , \
+            \frac{\partial F_1}{\partial z}-\frac{\partial F_3}{\partial x} \ , \
+            \frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}$).
+        then by {\color{red} theorem 2.3.9}:
+
+        \hspace{0.5cm}
+        div(curl(F))
+        = $\frac{\partial}{\partial x}
+            (\frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z})$
+            + $\frac{\partial}{\partial y}
+            (\frac{\partial F_1}{\partial z}-\frac{\partial F_3}{\partial x})$
+            + $\frac{\partial}{\partial z}
+            (\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y})$
+        = 0
+    \end{proof}
 
 
 
