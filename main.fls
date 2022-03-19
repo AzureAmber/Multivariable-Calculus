@@ -955,6 +955,14 @@ INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/esint/esint10.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/latex-fonts/lasy5.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm
+INPUT ./Content/C2.tex
+INPUT Content/C2.tex
+INPUT ./Content/C2.tex
+INPUT Content/C2.tex
+INPUT ./Content/C3.tex
+INPUT Content/C3.tex
+INPUT ./Content/C3.tex
+INPUT Content/C3.tex
 INPUT ./Bibliography/Bibliography.tex
 INPUT ./Bibliography/Bibliography.tex
 INPUT ./Bibliography/Bibliography.tex
@@ -968,6 +976,7 @@ INPUT ./main.out
 INPUT ./main.out
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
