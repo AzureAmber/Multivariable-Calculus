@@ -19,3 +19,7 @@
 \contentsline {subsection}{\numberline {4.2} Extrema }{28}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3} Lagrange Multipliers }{29}{subsection.4.3}%
 \contentsline {section}{\numberline {5}Day 5: Integration}{30}{section.5}%
+\contentsline {subsection}{\numberline {5.1} Double Integral }{30}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2} Triple Integral }{32}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3} Change of Variables }{35}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Day 6: Line Integrals}{37}{section.6}%

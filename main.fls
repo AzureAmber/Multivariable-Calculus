@@ -971,6 +971,10 @@ INPUT ./Content/C5.tex
 INPUT Content/C5.tex
 INPUT ./Content/C5.tex
 INPUT Content/C5.tex
+INPUT ./Content/C6.tex
+INPUT Content/C6.tex
+INPUT ./Content/C6.tex
+INPUT Content/C6.tex
 INPUT ./Bibliography/Bibliography.tex
 INPUT ./Bibliography/Bibliography.tex
 INPUT ./Bibliography/Bibliography.tex
