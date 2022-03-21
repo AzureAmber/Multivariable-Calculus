@@ -1,255 +1,254 @@
 \newpage
 
-\section[Day 4: Extrema]{ Extrema }
+\section[Day 4: Integration]{ Integration }
 
-\subsection{ Taylor's Theorem }
+\subsection{ Double Integral }
 
-    \begin{wtheorem}{Taylor's Theorem for one variable}{14cm}
-        Let f: X $\subset$ $\mathbb{R}$ $\rightarrow$ $\mathbb{R}$
-        be $C^{k+1}$.
-        
-        Then for a $\in$ X, the k-th order Taylor polynomial of f centered at a:
-
-        \hspace{0.5cm}
-        $p_k(x)$
-        = $f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2
-            + ... + \frac{f^{(k)}(a)}{k!}(x-a)^k$
-
-        Then for h $>$ 0, there is a x $\in$ [a,a+h] such that:
-
-        \hspace{0.5cm}
-        f(a+h) = $p_k(a+h)$ + $\frac{f^{(n)}(x)}{(k+1)!}h^{k+1}$
-    \end{wtheorem}
-
-    \begin{proof}
-        Let M be defined such that f(a+h) = $p_k(a+h)$ + $M(a+h-a)^{k+1}$.
-
-        Let g(t) = f(t) - $p_k(t)$ - $M(t-a)^{k+1}$ for t $\in$ [a,a+h]. Then:
-
-        \hspace{0.5cm}
-        $g^{(k+1)}(t)$ = $f^{(k+1)}(t) - (k+1)!M$
-
-        Since $p_k^{(i)}(a)$ = $f^{(i)}(a)$ for i = \{0,...,k\}, then:
+    \begin{definition}{Riemann Sum in $\mathbb{R}^2$}{14cm}
+        For region R = [a,b] $\times$ [c,d], a {\color{lblue} partition}, P,
+        consist:
         
         \hspace{0.5cm}
-        $g^{(i)}(a)$ = $f^{(i)}(a)$ - $p_k^{(i)}(a)$
-                        - $\frac{(k+1)!}{(k+1-i)!}M(a-a)^{k+1-i}$ = 0
-
-        Since g(a+h) = 0 where f is differentiable so g is differentiable,
-        then by the Mean Value Theorem, there is a $t_1$ $\in$ (0,h):
-
+        \{$x_0,...,x_n$\} $\in$ [a,b] such that each $x_i < x_{i+1}$
+        and $\Delta x_i$ = $x_i - x_{i-1}$
+        
         \hspace{0.5cm}
-        0 - 0
-        = g(a+h) - g(a)
-        = h*g'($a+t_1$)
-        \hspace{0.5cm}
-        $\Rightarrow$
-        \hspace{0.5cm}
-        g'($a+t_1$) = 0
+        \{$y_0,...,y_n$\} $\in$ [c,d] such that each $y_i < y_{i+1}$
+        and $\Delta y_i$ = $y_i - y_{i-1}$
 
-        Since g' is differentiable, by the Mean Value Theorem,
-        there is a $t_2$ $\in$ $(0,t_1)$:
+        Let $||P||$ = max($\Delta x_i$,$\Delta y_j$) for i,j = \{1,...,n\}.
+        Then for each $[x_{i-1},x_i]$ $\times$ $[y_{j-1},y_j]$,
+        choose one point $c_{ij}$.
+        Let {\color{lblue} sample points}, C, consist of all $c_{ij}$.
+
+        Then the {\color{lblue} Riemann sum} of f(x,y) for partition P,
+        sample points C:
 
         \hspace{0.5cm}
-        0 - 0
-        = g'($a+t_1$) - g'(a)
-        = $t_1$*g''($a+t_2$)
-        \hspace{0.5cm}
-        $\Rightarrow$
-        \hspace{0.5cm}
-        g'($a+t_2$) = 0
-
-        Repeating the process k+1 times, there is a $t_{k+1}$ $\in$ $(0,t_k)$:
-
-        \hspace{0.5cm}
-        0 - 0
-        = $g^{(k)}(a+t_k)$ - $g^{(k)}(a)$
-        = $t_k$*$g^{(k+1)}(a+t_{k+1})$
-        \hspace{0.5cm}
-        $\Rightarrow$
-        \hspace{0.5cm}
-        $g^{(k+1)}(a+t_{k+1})$ = 0
-
-        Since $t_{k+1}$ $<$ $t_k$ $<$ ... $<$ $t_1$ $<$ h, then:
-
-        \hspace{0.5cm}
-        0 = $g^{(k+1)}(a+t_{k+1})$ = $f^{(k+1)}(a+t_{k+1}) - (k+1)!M$
-
-        Thus, M = $\frac{f^{(k+1)}(a+t_{k+1})}{(k+1)!}$
-        where $a+t_{k+1}$ $\in$ [a,a+h].
-    \end{proof}
+        R(f,P,C) = $\sum_{i,j=1}^n$ $f(c_{ij}) \Delta x_i \Delta y_j$
+    \end{definition}
 
     \vspace{0.5cm}
 
 
 
-    \begin{wtheorem}{Taylor's Theorem for multiple variables}{14cm}
-        Let f: X $\subset$ $\mathbb{R}^n$ $\rightarrow$ $\mathbb{R}$
-        be $C^2$. Then for a $\in$ X:
+    \begin{definition}{Double Integral}{14cm}
+        f: R $\subset$ $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}$
+        is {\color{lblue} integrable} if:
 
         \hspace{0.5cm}
-        $p_k(x)$
-        = $f(a)$
-            + $\sum_{i=1}^n f_{x_i}(a)(x_i - a_i)$
-            + $\frac{1}{2} \sum_{i,j=1}^n f_{x_ix_j}(a)(x_i - a_i)(x_j - a_j)$
+        $\int \int_R$ $f(x,y)$ dA
+        = $\int \int_R$ $f(x,y)$ dxdy
+        = $\underset{||P|| \rightarrow 0}{\lim}$
+            $\sum_{i,j=1}^n$ $f(c_{ij}) \Delta x_i \Delta y_j$
 
-            \hspace{2cm}
-            + ...
-            + $\frac{1}{k!} \sum_{i_1,...,i_k=1}^n
-                f_{x_{i_1}...x_{i_k}}(a)(x_{i_1} - a_{i_1})...(x_{i_k} - a_{i_k})$
+        exist. Then, $\int \int_R$ $f(x,y)$ dA
+        is the {\color{lblue} double integral} of f on R.
+    \end{definition}
 
-        Then:
+    \vspace{0.5cm}
 
-        \hspace{0.5cm}
-        f(x) = $p_k(x)$ + $R(a)$
-        \hspace{1cm}
-        where $\lim_{x \rightarrow a}$ $\frac{R(a)}{||x-a||}$ = 0
+
+
+    \begin{wtheorem}{Continuous functions in $\mathbb{R}^2$ are integrable}{14cm}
+        If f: R $\subset$ $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}$
+        is continuous on region R, then $\int \int_R$ $f(x,y)$ dA exists.
     \end{wtheorem}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{wtheorem}{Piecewise continuous functions in $\mathbb{R}^2$
+    are integrable}{14cm}
+        Set X $\subset$ $\mathbb{R}^2$ has {\color{lblue} measure zero}
+        if for any $\epsilon > 0$ and every $x_i$ $\in$ X, there are
+        $[a_i,b_i] \times [c_i,d_i]$ where $x_i$ $\in$
+        $[a_i,b_i] \times [c_i,d_i]$ such that:
+
+        \hspace{0.5cm}
+        $\sum_{x_i \in X}$ $(b_i - a_i)*(d_i - c_i)$ $<$ $\epsilon$
+
+        \vspace{0.3cm}
+        
+        If f: R $\subset$ $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}$
+        is bounded and the set S of discontinuities of f on R
+        has measure zero, then $\int \int_R$ $f(x,y)$ dA exists.
+    \end{wtheorem}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{wtheorem}{Fubini's Theorem in $\mathbb{R}^2$:
+    Double Integrals $\Rightarrow$ Iterated Integrals}{14cm}
+        Let f: R = [a,b] $\times$ [c,d] $\subset$ $\mathbb{R}^2$
+        $\rightarrow$ $\mathbb{R}$ be bounded and the set S of
+        discontinuities of f on R have measure zero.
+        If every line parallel to x=0 or y=0 contains finitely
+        many points on S, then:
+
+        \hspace{0.5cm}
+        $\int \int_R$ $f(x,y)$ dA
+        = $\int_c^d \int_a^b$ $f(x,y)$ dxdy
+        = $\int_a^b \int_c^d$ $f(x,y)$ dydx 
+    \end{wtheorem}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{ltheorem}{Properties of the Integral in $\mathbb{R}^2$}{1.5cm}
+        \item If f,g are integrable on R, then f+g is integrable on R where:
+        
+            \hspace{0.5cm}
+            $\int \int_R$ f+g dA
+            = $\int \int_R$ f dA + $\int \int_R$ g dA
+
+        \item If f is integrable on R and scalar c $\in$ $\mathbb{R}$,
+            then cf is integrable on R where:
+        
+            \hspace{0.5cm}
+            $\int \int_R$ cf dA
+            = c $\int \int_R$ f dA
+
+        \item If f,g are integrable on R where f(x,y) $\leq$ g(x,y) for all
+            (x,y) $\in$ R:
+        
+            \hspace{0.5cm}
+            $\int \int_R$ f dA
+            $\leq$ $\int \int_R$ g dA
+
+        \item If f is integrable on R, then $|f|$ is integrable on R where:
+        
+            \hspace{0.5cm}
+            $|$$\int \int_R$ f dA$|$
+            $\leq$ $\int \int_R$ $|f|$ dA
+    \end{ltheorem}
 
     \newpage
 
 
 
 
+    \begin{definition}{Elementary Region and the Extension of f
+    in $\mathbb{R}^2$}{14cm}
+        Set D $\subset$ $\mathbb{R}^2$ is an {\color{lblue} elementary region} if:
 
-\subsection{ Extrema }
+        \begin{enumerate}[label=(\alph*), leftmargin=1cm, itemsep=0.1cm]
+            \item {\color{red} Type 1}
 
-    \begin{definition}{Local Extrema}{14cm}
-        For f: X $\subset$ $\mathbb{R}^n$ $\rightarrow$ $\mathbb{R}$,
-        let a $\in$ X.
-        
-        \hspace{0.5cm}
-        f has a {\color{lblue} local minimum}
-        at a if there is a $\delta > 0$ such that:
+                For x $\in$ [a,b], there are continuous $y_1(x)$,$y_2(x)$ where
+                $y_1(x)$ $\leq$ y $\leq$ $y_2(x)$.
 
-        \hspace{1cm}
-        f(x) $\geq$ f(a) for all x $\in$ X where $||x-a|| < \delta$
-        
-        \hspace{0.5cm}
-        f has a {\color{lblue} local maximum}
-        at a if there is a $\delta > 0$ such that:
+                \hspace{0.5cm}
+                D = \{ (x,y) $|$ x $\in$ [a,b] , y $\in$ [$y_1(x)$,$y_2(x)$] \}
 
-        \hspace{1cm}
-        f(x) $\leq$ f(a) for all x $\in$ X where $||x-a|| < \delta$
-    \end{definition}
+            \item {\color{red} Type 2}
 
-    \vspace{0.5cm}
+                For y $\in$ [c,d], there are continuous $x_1(y)$,$x_2(y)$ where
+                $x_1(y)$ $\leq$ x $\leq$ $x_2(y)$.
 
+                \hspace{0.5cm}
+                D = \{ (x,y) $|$ x $\in$ [$x_1(y)$,$x_2(y)$] , y $\in$ [c,d] \}
 
-
-    \begin{wtheorem}{Local extrema have a derivative of 0}{14cm}
-        For differentiable f: X $\subset$ $\mathbb{R}^n$ $\rightarrow$ $\mathbb{R}$,
-        let a $\in$ X.
-
-        If f has a local extrema at a, then Df(a) = 0.
-    \end{wtheorem}
-
-    \begin{proof}
-        Let f have a local maximum at a. The proof for local minimum is
-        analogous.
-
-        For any i $\in$ \{1,...,n\}, let F(t) = f($a+te_i$).
-        Since F: $\mathbb{R}$ $\rightarrow$ $\mathbb{R}$
-        has a local maximum at F(0), then
-        0 = F'(0) = $\frac{\partial f}{\partial x_i}(a)$.
-
-        Since Df(a) =
-        $
-        \begin{bmatrix}
-            \frac{\partial f}{\partial x_1}(a)
-            & \frac{\partial f}{\partial x_2}(a)
-            & ...
-            & \frac{\partial f}{\partial x_n}(a)
-        \end{bmatrix}
-        $,
-        then Df(a) = 0.
-    \end{proof}
-
-    \vspace{0.5cm}
-
-
-
-    \begin{definition}{Critical Point and Saddle Point}{14cm}
-        For f: X $\subset$ $\mathbb{R}^n$ $\rightarrow$ $\mathbb{R}$,
-        let a $\in$ X.
-
-        If Df(a) = 0 or undefined, then a is a {\color{lblue} critical point}.
+            \item {\color{red} Type 3}
+            
+                Both Type 1 and Type 2
+        \end{enumerate}
 
         \vspace{0.3cm}
 
-        Even if Df(a) = 0, f(a) might not be a local extrema
-        since it might be a local maximum along some paths and
-        a local minimum along other paths.
-        For this type of ambiguity of extrema, a is defined as a
-        {\color{lblue} saddle point}. 
+        If f: D $\rightarrow$ $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}$
+        is continuous and D is an elementary region, then
+        the extension of f, $f^{ext}$:
+
+        \hspace{0.5cm}
+        $f^{ext}(x,y)$ =
+        $
+        \begin{cases}
+            f(x,y) & (x,y) \in D \\
+            0 & (x,y) \not \in D
+        \end{cases}
+        $
+
+        Since f is continuous and thus, integrable and the discontinuities of
+        $f^{ext}$ exist only at the boundary of D which is a curve and thus,
+        have measure zero, then $f^{ext}$ is integrable.
     \end{definition}
 
     \vspace{0.5cm}
 
 
 
-    \begin{wtheorem}{Second Derivative Test}{14cm}
-        Let f: X $\subset$ $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}$
-        be $C^2$.
+    \begin{wtheorem}{Double Integral over a General Region}{14cm}
+        If f: D $\rightarrow$ $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}$
+        is continuous and D is an elementary region, then
+        for any region R = [a,b] $\times$ [c,d] such that D $\subset$ R:
 
-        If a $\in$ X is a critical point of f, then:
+        \hspace{0.5cm}
+        $\int \int_D$ f(x,y) dA
+        = $\int \int_R$ $f^{ext}(x,y)$ dA
+
+        Then if:
 
         \begin{enumerate}[label=(\alph*), leftmargin=1cm, itemsep=0.1cm]
-            \item If $f_{xx}(a)f_{yy}(a) - [f_{xy}(a)]^2$ $>$ 0 and
-                $f_{xx}(a)$ $>$ 0, then a is a local minimum
+            \item D is a Type 1 elementary region
+            
+                \hspace{0.5cm}
+                $\int \int_D$ f(x,y) dA
+                = $\int_a^b \int_{y_1(x)}^{y_2(x)}$ f(x,y) dydx
 
-            \item If $f_{xx}(a)f_{yy}(a) - [f_{xy}(a)]^2$ $>$ 0 and
-                $f_{xx}(a)$ $<$ 0, then a is a local maximum
-
-            \item If $f_{xx}(a)f_{yy}(a) - [f_{xy}(a)]^2$ $<$ 0,
-                then a is saddle point
+            \item D is a Type 2 elementary region
+            
+                \hspace{0.5cm}
+                $\int \int_D$ f(x,y) dA
+                = $\int_c^d \int_{x_1(y)}^{x_2(y)}$ f(x,y) dxdy
         \end{enumerate}
     \end{wtheorem}
 
+    \begin{proof}
+        Suppose D is a Type 1 elementary region.
+
+        Let region R = [a,b] $\times$ [c,d] be such that
+        c $\leq$ $y_1(x)$ $\leq$ y $\leq$ $y_2(x)$ $\leq$ d.
+
+        Since $f^{ext}(x,y)$ = 0 for any
+        (x,y) $\not \in$ D, then by {\color{red} theorem 4.1.5}:
+
+        \hspace{0.2cm}
+        $\int \int_D$ f(x,y) dA
+        = $\int \int_R$ $f^{ext}(x,y)$ dA
+        = $\int_a^b \int_c^d$ $f^{ext}(x,y)$ dydx
+        = $\int_a^b \int_{y_1(x)}^{y_2(x)}$ f(x,y) dydx
+
+        \vspace{0.3cm}
+
+        Suppose D is a Type 2 elementary region.
+
+        Let region R = [a,b] $\times$ [c,d] be such that
+        a $\leq$ $x_1(y)$ $\leq$ x $\leq$ $x_2(y)$ $\leq$ b.
+
+        Since $f^{ext}(x,y)$ = 0 for any
+        (x,y) $\not \in$ D, then by {\color{red} theorem 4.1.5}:
+
+        \hspace{0.2cm}
+        $\int \int_D$ f(x,y) dA
+        = $\int \int_R$ $f^{ext}(x,y)$ dA
+        = $\int_c^d \int_a^b$ $f^{ext}(x,y)$ dxdy
+        = $\int_c^d \int_{x_1(y)}^{x_2(y)}$ f(x,y) dxdy
+    \end{proof}
+
     \vspace{0.5cm}
 
 
 
-    \begin{definition}{Compactness}{14cm}
-        Let set X $\subset$ $\mathbb{R}^n$.
-
-        \vspace{0.3cm}
-
-        A point x $\in$ X is a {\color{lblue} limit point}
-        if for any $\delta > 0$:
-        
-        \hspace{0.5cm}
-        The set of all p where $||p-x|| < \delta$
-        contain a p $\in$ X where p $\not =$ x.
-
-        X is closed if all limit point of X are in X.
-
-        \vspace{0.3cm}
-
-        X is {\color{lblue} bounded} if there is a M $\in$ $\mathbb{R}$
-        such that for all x $\in$ X:
+    \begin{definition}{Area}{14cm}
+        The {\color{lblue} area} of a region R $\subset$ $\mathbb{R}^2$:
 
         \hspace{0.5cm}
-        $||x||$ $<$ M
-
-        \vspace{0.5cm}
-
-        Then, X is {\color{lblue} compact} if X is closed and bounded.
+        A = $\int \int_R$ 1 dA
     \end{definition}
-
-    \vspace{0.5cm}
-
-
-
-    \begin{wtheorem}{Extreme Value Theorem}{14cm}
-        If X $\subset$ $\mathbb{R}^n$ is compact and
-        f: X $\rightarrow$ $\mathbb{R}$ is continuous, then there are
-
-        $x_{\text{min}},x_{\text{max}}$ $\in$ X such that for all x $\in$ X:
-
-        \hspace{0.5cm}
-        f($x_{\text{min}}$) $\leq$ f(x) $\leq$ f($x_{\text{max}}$)
-    \end{wtheorem}
 
     \newpage
 
@@ -257,38 +256,604 @@
 
 
 
-\subsection[ Lagrange Multipliers ]{ Lagrange Multipliers for Constrained Extrema }
+\subsection{ Triple Integral }
 
-    \begin{wtheorem}{Lagrange Multiplier: Optimization for one constraint}{14cm}
-        Let f,g: X $\subset$ $\mathbb{R}^n$ $\rightarrow$ $\mathbb{R}$
-        be $C^1$ and g(x) = c for constant c $\in$ $\mathbb{R}$.
+        \begin{definition}{Riemann Sum in $\mathbb{R}^3$}{14cm}
+        For region R = [a,b] $\times$ [c,d] $\times$ [e,f],
+        a {\color{lblue} partition}, P, consist:
         
-        If f(x) has an extrema at $x_0$ where g($x_0$) = c and
-        $\nabla g(x_0)$ $\not =$ 0, then there is a scalar $\lambda$ $\in$
-        $\mathbb{R}$ such that:
+        \hspace{0.5cm}
+        \{$x_0,...,x_n$\} $\in$ [a,b] such that each $x_i < x_{i+1}$
+        and $\Delta x_i$ = $x_i - x_{i-1}$
+        
+        \hspace{0.5cm}
+        \{$y_0,...,y_n$\} $\in$ [c,d] such that each $y_i < y_{i+1}$
+        and $\Delta y_i$ = $y_i - y_{i-1}$
 
         \hspace{0.5cm}
-        $\nabla f(x_0)$ = $\lambda$ $\nabla g(x_0)$
+        \{$z_0,...,z_n$\} $\in$ [e,f] such that each $z_i < z_{i+1}$
+        and $\Delta z_i$ = $z_i - z_{i-1}$
+
+        Let $||P||$ = max($\Delta x_i,\Delta y_j,\Delta z_k$)
+        for i,j,k = \{1,...,n\}.
+        Then for each $[x_{i-1},x_i]$ $\times$ $[y_{j-1},y_j]$
+        $\times$ $[z_{k-1},z_k]$,
+        choose one point $c_{ijk}$.
+        Let {\color{lblue} sample points}, C, consist of all $c_{ijk}$.
+        Then the {\color{lblue} Riemann sum} of f(x,y,z) for partition P,
+        sample points C:
+
+        \hspace{0.5cm}
+        R(f,P,C) = $\sum_{i,j,k=1}^n$ $f(c_{ijk}) \Delta x_i \Delta y_j \Delta z_k$
+    \end{definition}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{definition}{Triple Integral}{14cm}
+        f: R $\subset$ $\mathbb{R}^3$ $\rightarrow$ $\mathbb{R}$
+        is {\color{lblue} integrable} if:
+
+        \hspace{0.5cm}
+        $\int \int \int_R f(x,y,z)$ dV
+        = $\int \int \int_R f(x,y,z)$ dxdydz
+
+        \hspace{4.15cm}
+        = $\underset{||P|| \rightarrow 0}{\lim}$
+            $\sum_{i,j=1}^n f(c_{ijk}) \Delta x_i \Delta y_j \Delta z_k$
+
+        exist. Then, $\int \int \int_R$ $f(x,y,z)$ dV
+        is the {\color{lblue} triple integral} of f on R.
+    \end{definition}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{wtheorem}{Continuous functions in $\mathbb{R}^3$ are integrable}{14cm}
+        If f: R $\subset$ $\mathbb{R}^3$ $\rightarrow$ $\mathbb{R}$
+        is continuous on region R, then $\int \int \int_R$ $f(x,y,z)$ dV exists.
     \end{wtheorem}
 
     \vspace{0.5cm}
 
 
 
-    \begin{wtheorem}{Lagrange Multiplier: Optimization for multiple constraints}{14cm}
-        Let f,$g_1,...,g_k$: X $\subset$ $\mathbb{R}^n$ $\rightarrow$ $\mathbb{R}$
-        be $C^1$ where k $<$ n and each $g_i$(x) = $c_i$ for constants
-        $c_i$ $\in$ $\mathbb{R}$ for i = \{1,...,k\}.
-        
-        If f(x) has an extrema at $x_0$ where each $g_i$($x_0$) = $c_i$ and
-        $\nabla g_i(x_0)$ $\not =$ 0, then there are scalars
-        $\lambda_1,...,\lambda_k$ $\in$ $\mathbb{R}$ such that:
+    \begin{wtheorem}{Piecewise continuous functions in $\mathbb{R}^3$
+    are integrable}{14cm}
+        Set X $\subset$ $\mathbb{R}^3$ has measure zero
+        if for any $\epsilon > 0$ and every $x_i$ $\in$ X, there are
+        $[a_i,b_i] \times [c_i,d_i] \times [e_i,f_i]$ where $x_i$ $\in$
+        $[a_i,b_i] \times [c_i,d_i] \times [e_i,f_i]$ such that:
 
         \hspace{0.5cm}
-        $\nabla f(x_0)$ = $\lambda_1 \nabla g_1(x_0)
-                            + \lambda_2 \nabla g_2(x_0)
-                            + ... + \lambda_k \nabla g_k(x_0)$
+        $\sum_{x_i \in X}$ $(b_i - a_i)*(d_i - c_i)*(f_i - e_i)$ $<$ $\epsilon$
+
+        \vspace{0.3cm}
+        
+        If f: R $\subset$ $\mathbb{R}^3$ $\rightarrow$ $\mathbb{R}$
+        is bounded and the set S of discontinuities of f on R
+        has measure zero, then $\int \int \int_R$ $f(x,y,z)$ dV exists.
     \end{wtheorem}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{wtheorem}{Fubini's Theorem in $\mathbb{R}^3$:
+    Triple Integrals $\Rightarrow$ Iterated Integrals}{14cm}
+        Let f: R = [a,b] $\times$ [c,d] $\times$ [e,f] $\subset$ $\mathbb{R}^3$
+        $\rightarrow$ $\mathbb{R}$ be bounded and the set S of
+        discontinuities of f on R have measure zero.
+        If every line parallel to x=0, y=0, or z=0 contains finitely
+        many points on S, then:
+
+        \hspace{0.2cm}
+        $\int \int \int_R$ $f(x,y,z)$ dV
+        = $\int_e^f \int_c^d \int_a^b$ $f(x,y,z)$ dxdydz
+        = $\int_c^d \int_e^f \int_a^b$ $f(x,y,z)$ dxdzdy
+        
+        \hspace{3.75cm}
+        = $\int_e^f \int_a^b \int_c^d$ $f(x,y,z)$ dydxdz
+        = $\int_a^b \int_e^f \int_c^d$ $f(x,y,z)$ dydzdx
+
+        \hspace{3.75cm}
+        = $\int_c^d \int_a^b \int_e^f$ $f(x,y,z)$ dzdxdy
+        = $\int_a^b \int_c^d \int_e^f$ $f(x,y,z)$ dzdydx
+    \end{wtheorem}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{ltheorem}{Properties of the Integral in $\mathbb{R}^3$}{1.5cm}
+        \item If f,g are integrable on R, then f+g is integrable on R where:
+        
+            \hspace{0.5cm}
+            $\int \int \int_R$ f+g dV
+            = $\int \int \int_R$ f dV + $\int \int \int_R$ g dV
+
+        \item If f is integrable on R and scalar c $\in$ $\mathbb{R}$,
+            then cf is integrable on R where:
+        
+            \hspace{0.5cm}
+            $\int \int \int_R$ cf dV
+            = c $\int \int \int_R$ f dV
+
+        \item If f,g are integrable on R where f(x,y) $\leq$ g(x,y) for all
+            (x,y) $\in$ R:
+        
+            \hspace{0.5cm}
+            $\int \int \int_R$ f dV
+            $\leq$ $\int \int \int_R$ g dV
+
+        \item If f is integrable on R, then $|f|$ is integrable on R where:
+        
+            \hspace{0.5cm}
+            $|$$\int \int \int_R$ f dV$|$
+            $\leq$ $\int \int \int_R$ $|f|$ dV
+    \end{ltheorem}
+
+    \newpage
+
+
+
+
+    \begin{definition}{Elementary Region and the Extension of f
+    in $\mathbb{R}^3$}{14cm}
+        Set D $\subset$ $\mathbb{R}^3$ is an elementary region if:
+
+        \begin{enumerate}[label=(\alph*), leftmargin=1cm, itemsep=0.1cm]
+            \item {\color{red} Type 1}
+
+                For x $\in$ [a,b], there are continuous $y_1(x)$,$y_2(x)$ where
+                $y_1(x)$ $\leq$ y $\leq$ $y_2(x)$
+                and continuous $z_1(x,y)$,$z_2(x,y)$ where
+                $z_1(x,y)$ $\leq$ z $\leq$ $z_2(x,y)$.
+
+                \hspace{0.5cm}
+                D = \{ (x,y,z) $|$ x $\in$ [a,b] , y $\in$ [$y_1(x)$,$y_2(x)$] ,
+                                z $\in$ [$z_1(x,y)$,$z_2(x,y)$] \}
+
+                OR
+
+                For x $\in$ [a,b], there are continuous $z_1(x)$,$z_2(x)$ where
+                $z_1(x)$ $\leq$ z $\leq$ $z_2(x)$
+                and continuous $y_1(x,z)$,$y_2(x,z)$ where
+                $y_1(x,z)$ $\leq$ y $\leq$ $y_2(x,z)$.
+
+                \hspace{0.5cm}
+                D = \{ (x,y,z) $|$ x $\in$ [a,b] , y $\in$ [$y_1(x,z)$,$y_2(x,z)$],
+                                    z $\in$ [$z_1(x)$,$z_2(x)$] \}
+
+            \item {\color{red} Type 2}
+
+                For y $\in$ [c,d], there are continuous $x_1(y)$,$x_2(y)$ where
+                $x_1(y)$ $\leq$ x $\leq$ $x_2(y)$
+                and continuous $z_1(x,y)$,$z_2(x,y)$ where
+                $z_1(x,y)$ $\leq$ z $\leq$ $z_2(x,y)$.
+
+                \hspace{0.5cm}
+                D = \{ (x,y,z) $|$ x $\in$ [$x_1(y)$,$x_2(y)$] , y $\in$ [c,d] ,
+                                z $\in$ [$z_1(x,y)$,$z_2(x,y)$] \}
+
+                OR
+
+                For y $\in$ [c,d], there are continuous $z_1(y)$,$z_2(y)$ where
+                $z_1(y)$ $\leq$ z $\leq$ $z_2(y)$
+                and continuous $x_1(y,z)$,$x_2(y,z)$ where
+                $x_1(y,z)$ $\leq$ x $\leq$ $x_2(y,z)$.
+
+                \hspace{0.5cm}
+                D = \{ (x,y,z) $|$ x $\in$ [$x_1(y,z)$,$x_2(y,z)$] , y $\in$ [c,d] ,
+                                z $\in$ [$z_1(y)$,$z_2(y)$] \}
+
+            \item {\color{red} Type 3}
+            
+                For z $\in$ [e,f], there are continuous $x_1(z)$,$x_2(z)$ where
+                $x_1(z)$ $\leq$ x $\leq$ $x_2(z)$
+                and continuous $y_1(x,z)$,$y_2(x,z)$ where
+                $y_1(x,z)$ $\leq$ y $\leq$ $y_2(x,z)$.
+
+                \hspace{0.5cm}
+                D = \{ (x,y,z) $|$ x $\in$ [$x_1(z)$,$x_2(z)$] , 
+                                y $\in$ [$y_1(x,z)$,$y_2(x,z)$] ,
+                                z $\in$ [e,f] \}
+
+                OR
+
+                For z $\in$ [e,f], there are continuous $y_1(z)$,$y_2(z)$ where
+                $y_1(z)$ $\leq$ y $\leq$ $y_2(z)$
+                and continuous $x_1(y,z)$,$x_2(y,z)$ where
+                $x_1(y,z)$ $\leq$ x $\leq$ $x_2(y,z)$.
+
+                \hspace{0.5cm}
+                D = \{ (x,y,z) $|$ x $\in$ [$x_1(y,z)$,$x_2(y,z)$] , 
+                                y $\in$ [$y_1(z)$,$y_2(z)$] ,
+                                z $\in$ [e,f] \}
+
+            \item {\color{red} Type 4}
+            
+                All Type 1, 2, and 3
+        \end{enumerate}
+
+        \vspace{0.3cm}
+
+        If f: D $\rightarrow$ $\mathbb{R}^3$ $\rightarrow$ $\mathbb{R}$
+        is continuous and D is an elementary region, then
+        the extension of f, $f^{ext}$:
+
+        \hspace{0.5cm}
+        $f^{ext}(x,y,z)$ =
+        $
+        \begin{cases}
+            f(x,y,z) & (x,y,z) \in D \\
+            0 & (x,y,z) \not \in D
+        \end{cases}
+        $
+
+        Since f is continuous and thus, integrable and the discontinuities of
+        $f^{ext}$ exist only at the boundary of D which is a 2d surface and thus,
+        have measure zero, then $f^{ext}$ is integrable.
+    \end{definition}
+
+    \newpage
+
+
+
+    \begin{wtheorem}{Triple Integral over a General Region}{14cm}
+        If f: D $\rightarrow$ $\mathbb{R}^3$ $\rightarrow$ $\mathbb{R}$
+        is continuous and D is an elementary region, then
+        for any region R = [a,b] $\times$ [c,d] $\times$ [e,f]
+        such that D $\subset$ R:
+
+        \hspace{0.5cm}
+        $\int \int \int_D$ f(x,y,z) dV
+        = $\int \int \int_R$ $f^{ext}(x,y,z)$ dV
+
+        Then if:
+
+        \begin{enumerate}[label=(\alph*), leftmargin=1cm, itemsep=0.1cm]
+            \item D is a Type 1 elementary region
+            
+                \hspace{0.5cm}
+                $\int \int \int_D$ f(x,y,z) dV
+                = $\int_a^b \int_{y_1(x)}^{y_2(x)}
+                    \int_{z_1(x,y)}^{z_2(x,y)}$ f(x,y,z) dzdydx
+
+                \hspace{3.9cm}
+                = $\int_a^b \int_{z_1(x)}^{z_2(x)}
+                    \int_{y_1(x,z)}^{y_2(x,z)}$ f(x,y,z) dydzdx
+
+            \item D is a Type 2 elementary region
+            
+                \hspace{0.5cm}
+                $\int \int \int_D$ f(x,y,z) dV
+                = $\int_c^d \int_{x_1(y)}^{x_2(y)}
+                    \int_{z_1(x,y)}^{z_2(x,y)}$ f(x,y,z) dzdxdy
+
+                \hspace{3.9cm}
+                = $\int_a^b \int_{z_1(y)}^{z_2(y)}
+                    \int_{x_1(y,z)}^{x_2(y,z)}$ f(x,y,z) dxdzdy
+
+            \item D is a Type 3 elementary region
+            
+                \hspace{0.5cm}
+                $\int \int \int_D$ f(x,y,z) dV
+                = $\int_e^f \int_{x_1(z)}^{x_2(z)}
+                    \int_{y_1(x,z)}^{y_2(x,z)}$ f(x,y,z) dydxdz
+
+                \hspace{3.9cm}
+                = $\int_e^f \int_{y_1(z)}^{y_2(z)}
+                    \int_{x_1(y,z)}^{x_2(y,z)}$ f(x,y,z) dxdydz
+        \end{enumerate}
+    \end{wtheorem}
+
+    \begin{proof}
+        Suppose D is a Type 1 elementary region.
+
+        Let region R = [a,b] $\times$ [c,d] $\times$ [e,f] be such that
+        c $\leq$ $y_1(x)$ $\leq$ y $\leq$ $y_2(x)$ $\leq$ d and
+        
+        e $\leq$ $z_1(x,y)$ $\leq$ z $\leq$ $z_2(x,y)$ $\leq$ f.
+
+        Since $f^{ext}(x,y,z)$ = 0 for any
+        (x,y,z) $\not \in$ D, then by {\color{red} theorem 4.1.5}:
+
+        \hspace{0.5cm}
+        $\int \int \int_D$ f(x,y,z) dV
+        = $\int \int \int_R$ $f^{ext}(x,y,z)$ dV
+        = $\int_a^b \int_c^d \int_e^f$ $f^{ext}(x,y,z)$ dzdydx
+        
+        \hspace{3.9cm}
+        = $\int_a^b \int_c^d \int_{z_1(x,y)}^{z_2(x,y)}$ $f^{ext}(x,y,z)$ dzdydx
+
+        \hspace{3.9cm}
+        = $\int_a^b \int_{y_1(x)}^{y_2(x)} \int_{z_1(x,y)}^{z_2(x,y)}$
+        f(x,y,z) dzdydx
+
+        Proof is analogous for the other five cases.
+    \end{proof}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{definition}{Volume}{14cm}
+        The {\color{lblue} volume} of a region R $\subset$ $\mathbb{R}^3$:
+
+        \hspace{0.5cm}
+        V = $\int \int \int_R$ 1 dV
+    \end{definition}
+
+    \newpage
+
+
+
+
+
+\subsection{ Change of Variables }
+
+    \begin{wtheorem}{Linear Transformations Scaling Factor}{14cm}
+        Let A $\in$ $M_{2 \times 2}(\mathbb{R})$ where det(A) $\not =$ 0
+        such that T: $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}^2$:
+
+        \hspace{0.5cm}
+        (x,y) = T(u,v) = A
+        $
+        \begin{bmatrix}
+            u \\
+            v
+        \end{bmatrix}
+        $
+
+        Transformation T is 1-1 and onto where if D is a parallelogram in the
+        uv-plane, then T(D) is a parallelogram in the xy-plane where:
+
+        \hspace{0.5cm}
+        $\text{Vol}_2(\text{T(D)})$ = $|\text{det}(A)| * \text{Vol}_2(\text{D})$
+    \end{wtheorem}
+
+    \begin{proof}
+        The proof that T is 1-1 and onto uses linear algebra,
+        but it will be made simplier here.
+        Note however if linear algebra is used in full effect,
+        the given det(A) $\not =$ 0 satisfies the condition for 1-1 and onto.
+
+        Let A =
+        $
+        \begin{bmatrix}
+            a & b \\
+            c & d
+        \end{bmatrix}
+        $.
+        Suppose (a,c) = k(b,d) for some scalar k $\in$ $\mathbb{R}$.E
+
+        \hspace{0.5cm}
+        A $
+        \begin{bmatrix}
+            u \\
+            v
+        \end{bmatrix}
+        $ =
+        $
+        \begin{bmatrix}
+            au + bv \\
+            cu + dv
+        \end{bmatrix}
+        $ =
+        $
+        \begin{bmatrix}
+            a \\
+            c
+        \end{bmatrix}u
+        +
+        \begin{bmatrix}
+            b \\
+            d
+        \end{bmatrix}v
+        $ =
+        $
+        k
+        \begin{bmatrix}
+            b \\
+            d
+        \end{bmatrix}u
+        +
+        \begin{bmatrix}
+            b \\
+            d
+        \end{bmatrix}v
+        $ =
+        $
+        \begin{bmatrix}
+            b \\
+            d
+        \end{bmatrix}(ku+v)
+        $
+
+        Let (u,v) = (1,-k) and (u,v) = (2,-2k).
+        In both cases,
+        A $
+        \begin{bmatrix}
+            u \\
+            v
+        \end{bmatrix}
+        $ = 0
+        so T is not 1-1 if (a,c) = k(b,d).
+        But, if there is a k such that (a,c) = k(b,d),
+        then det(A) = ad-bc = (kb)d-b(kd) = 0
+        which contradicts that det(A) $\not =$ 0.
+        Also, note if there is a k such that (a,c) = k(b,d),
+        then A(u,v) consist of only multiples of (b,d)
+        so T is not onto since vectors that are not multiples of
+        (b,d) such as (b,d+1) cannot be reached.
+        Now suppose there isn't a k such that (a,c) = k(b,d). Then A(u,v)
+        cannot have two different $(u_1,v_1)$,$(u_2,v_2)$
+        such that $A(u_1,v_1)$ = $A(u_2,v_2)$
+        since 
+
+        \hspace{0.5cm}
+        $A(u_1,v_1)$ - $A(u_2,v_2)$ =
+        (a,c)$(u_1-u_2)$ + (b,d)$(v_1-v_2)$ = 0
+
+        so (a,c) = $-\frac{v_1 - v_2}{u_1 - u_2}$(b,d)
+        and thus, there is a k = $-\frac{v_1 - v_2}{u_1 - u_2}$
+        such that (a,c) = k(b,d) which is a contradiction.
+        Thus, if there isn't a k such that (a,c) = k(b,d), then
+        for two different $(u_1,v_1)$ and $(u_2,v_2)$, then 
+        $A(u_1,v_1)$ $\not =$ $A(u_2,v_2)$ so T is 1-1.
+        Also, note since there isn't a k such that (a,c) = k(b,d),
+        then any (x,y) can be reached by solving the system of
+        equations from A(u,v) = (x,y) for u,v and thus, T is onto.
+        
+        If there isn't a k such that (a,b) = k(c,d), then det(A) $\not =$ 0
+        since if det(A) = ad-bc = 0, then ad=bc so $\frac{a}{b}$ = $\frac{c}{d}$.
+        Note $\frac{a}{b}$ = $\frac{kc}{kd}$ = $\frac{c}{d}$ if there is a k
+        such that (a,b) = k(c,d) which is a contradiction.
+        Thus, by the restriction det(A) $\not =$ 0, then T is 1-1 and onto.
+
+        \vspace{0.3cm}
+
+        For any two $(u_1,v_1)$,$(u_2,v_2)$ where $(u_1,v_1)$ $\not  =$ k$(u_1,v_1)$
+        for any k $\in$ $\mathbb{R}$, a parallelogram
+        with sides $(u_1,v_1)$,$(u_2,v_2)$ can be formed in uv-plane.
+        Then T maps $(u_1,v_1)$,$(u_2,v_2)$ into two different
+        $A(u_1,v_1)$,$A(u_2,v_2)$ since T is 1-1 so $A(u_1,v_1)$,$A(u_2,v_2)$
+        are sides of a parallelogram in the xy-plane. Thus:
+
+        \hspace{0.5cm}
+        $\text{Vol}_2(\text{T(D)})$
+        = $|| A(u_1,v_1) \times A(u_2,v_2) ||$
+        = $|| [(a,c)u_1 + (b,d)v_1] \times [(a,c)u_2 + (b,d)v_2] ||$
+        
+        \hspace{0.5cm}
+        = $|| (a,c)u_1 \times (a,c)u_2
+                + (a,c)u_1 \times (b,d)v_2
+                + (b,d)v_1 \times (a,c)u_2
+                + (b,d)v_1 \times (b,d)v_2 ||$
+
+        \hspace{0.5cm}
+        = $|| [u_1v_2 - v_1u_2] [(a,c) \times (b,d)] ||$
+        = $|| (a,c) \times (b,d) ||$ $[u_1v_2 - v_1u_2]$
+
+        \hspace{0.5cm}
+        = $|ad-bd|$ $|| (u_1,v_1) \times (u_2,v_2) ||$
+        = $|\text{det}(A)| * \text{Vol}_2(\text{D})$
+    \end{proof}
+
+    \newpage
+
+
+
+    \begin{wtheorem}{Integral: Change of Variables}{14cm}
+        The {\color{lblue} Jacobian} of T: $\mathbb{R}^2$
+        $\rightarrow$ $\mathbb{R}^2$ where T(u,v) = (x,y):
+
+        \hspace{0.5cm}
+        $\frac{\partial(x,y)}{\partial(u,v)}$
+        = det(DT(u,v))
+        = det($
+        \begin{bmatrix}
+            \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\
+            \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
+        \end{bmatrix}
+        $)
+
+        Let elementary region D be in uv-plane. If transformation T is
+        $C^1$ (i.e. partial derivatives above are continuous),
+        then for integrable f: T(D) $\rightarrow$ $\mathbb{R}$
+        where
+        
+        x = x(u,v) and y = y(u,v):
+
+        \hspace{0.5cm}
+        $\int \int_\text{T(D)}$ f(x,y) dA(x,y)
+        = $\int \int_\text{D}$ f(x(u,v),y(u,v))
+            $|\frac{\partial(x,y)}{\partial(u,v)}|$ dA(u,v)
+
+        \vspace{0.5cm}
+
+        The {\color{lblue} Jacobian} of T: $\mathbb{R}^3$
+        $\rightarrow$ $\mathbb{R}^3$ where T(u,v,w) = (x,y,z):
+
+        \hspace{0.5cm}
+        $\frac{\partial(x,y,z)}{\partial(u,v,w)}$
+        = det(DT(u,v))
+        = det($
+        \begin{bmatrix}
+            \frac{\partial x}{\partial u}
+            & \frac{\partial x}{\partial v}
+            & \frac{\partial x}{\partial w} \\
+
+            \frac{\partial y}{\partial u}
+            & \frac{\partial y}{\partial v}
+            & \frac{\partial y}{\partial w} \\
+
+            \frac{\partial z}{\partial u}
+            & \frac{\partial z}{\partial v}
+            & \frac{\partial z}{\partial w} \\
+        \end{bmatrix}
+        $)
+
+        Let elementary region D be in uvw-space. If transformation T is
+        $C^1$, then for integrable f: T(D) $\rightarrow$ $\mathbb{R}$ where
+        x = x(u,v,w) , y = y(u,v,w) , and z = z(u,v,w):
+
+        \hspace{0.5cm}
+        $\int \int \int_\text{T(D)}$ f(x,y,z) dV(x,y,z)
+
+        \hspace{0.5cm}
+        = $\int \int \int_\text{D}$ f(x(u,v,w),y(u,v,w),z(u,v,w))
+            $|\frac{\partial(x,y)}{\partial(u,v)}|$ dV(u,v,w)
+    \end{wtheorem}
+
+    \begin{proof}
+        Take the case for T: $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}^2$.
+        The case for $\mathbb{R}^3$ is analogous.
+
+        Since T is $C^1$, then DT(u,v) exist and since
+        T(u,v) = A(u,v) = (x(u,v),y(u,v)), then:
+
+        \hspace{0.5cm}
+        DT(u,v) = A =
+        $
+        \begin{bmatrix}
+            \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\
+            \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \\
+        \end{bmatrix}
+        $
+        = $|\frac{\partial(x,y)}{\partial(u,v)}|$
+
+        Thus, by {\color{red} theorem 4.3.1}:
+
+        \hspace{0.5cm}
+        $\int \int_\text{T(D)}$ f(x,y) dA(x,y)
+
+        \hspace{0.5cm}
+        = $\underset{||P|| \rightarrow 0}{\lim}$
+            $\sum_{i,j=1}^n f(x_{ij},y_{ij}) \Delta x_i \Delta y_j$
+
+        \hspace{0.5cm}
+        = $\underset{||P|| \rightarrow 0}{\lim}$
+            $\sum_{i,j=1}^n f(x_{ij},y_{ij})
+            \text{Vol}_2([\Delta x_i , \Delta y_j])$
+
+        \hspace{0.5cm}
+        = $\underset{||P|| \rightarrow 0}{\lim}$
+            $\sum_{i,j=1}^n f(x_{ij}(u,v),y_{ij}(u,v))
+            |\text{DT(u,v)}| \text{Vol}_2([\Delta u_i , \Delta v_j])$
+
+        \hspace{0.5cm}
+        = $\underset{||P|| \rightarrow 0}{\lim}$
+            $\sum_{i,j=1}^n f(x_{ij}(u,v),y_{ij}(u,v))
+            |\text{DT(u,v)}| \Delta u_i \Delta v_j$
+
+        \hspace{0.5cm}
+        = $\int \int_\text{D}$ f(x(u,v),y(u,v))
+            $|\frac{\partial(x,y)}{\partial(u,v)}|$ dA(u,v)
+    \end{proof}
 
 
 
