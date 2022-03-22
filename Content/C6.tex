@@ -2,28 +2,165 @@
 
 \section[Day 6: Surface Integrals]{ Surface Integrals }
 
+\subsection{ Parametrized Surfaces }
+
+    \begin{definition}{ Parametrized Surfaces }{14cm}
+        A {\color{lblue} parametrized surface}
+        is a continuous function X: D $\subset$ $\mathbb{R}^2$
+        $\rightarrow$ $\mathbb{R}^3$.
+
+        \vspace{0.5cm}
+
+        Let surface S be parametrized by
+        differentiable X(s,t) = (x(s,t), y(s,t), z(s,t)).
+
+        Then the tangent vectors:
+
+        \hspace{0.5cm}
+        $T_s(s,t)$
+        = $\frac{\partial X}{\partial s}(s,t)$
+        = $(\frac{\partial x}{\partial s}(s,t),
+            \frac{\partial y}{\partial s}(s,t),
+            \frac{\partial z}{\partial s}(s,t))$
+
+        \hspace{0.5cm}
+        $T_t(s,t)$
+        = $\frac{\partial X}{\partial t}(s,t)$
+        = $(\frac{\partial x}{\partial t}(s,t),
+            \frac{\partial y}{\partial t}(s,t),
+            \frac{\partial z}{\partial t}(s,t))$
+
+        S is {\color{lblue} smooth} if X is $C^1$ and the
+        {\color{lblue} standard normal vector} of X:
+
+        \hspace{0.5cm}
+        $N_X(s,t)$ = $T_s(s,t)$ $\times$ $T_t(s,t)$ $\not =$ 0.
+
+        S is {\color{lblue} piecewise smooth} if
+        X = \{$X_1,...,X_m$\} where each parametrized surface $X_i$
+        is $C^1$ and $N_{X_i}(s,t)$ $\not =$ 0
+    \end{definition}
+
+    \vspace{0.5cm}
+
+
+
+
+    \begin{wtheorem}{Surface Area}{14cm}
+        Let surface S be parametrized by $C^1$ function X:
+        D $\subset$ $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}^3$.
+        
+        Then the surface area of S:
+
+        \hspace{0.5cm}
+        $\int \int_D$ $|| N_X(s,t) ||$ dA
+        = $\int \int_D$ $\sqrt{(\frac{\partial(x,y)}{\partial(s,t)})^2
+                                + (\frac{\partial(x,z)}{\partial(s,t)})^2
+                                + (\frac{\partial(y,z)}{\partial(s,t)})^2}$ dA
+
+        If the surface S is z = f(x,y), then the surface area of S:
+
+        \hspace{0.5cm}
+        $\int \int_D$ $\sqrt{f_x^2 + f_y^2 + 1}$ dA
+    \end{wtheorem}
+
+    \vspace{0.5cm}
 
 
 
 
 
+\subsection{ Surface Integrals }
+
+    \begin{wtheorem}{Scalar Surface Integrals}{14cm}
+        Let surface S be parametrized by smooth X(s,t):
+        D $\subset$ $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}^3$ and
+        
+        f(x,y,z): S $\subset$ R $\subset$ $\mathbb{R}^3$
+        $\rightarrow$ $\mathbb{R}$ be continuous.
+
+        Then the {\color{lblue} scalar surface integral} of f along X(s,t):
+
+        \hspace{0.5cm}
+        $\int \int_{X(s,t)}$ f dS
+        = $\int \int_D$ f(X(s,t)) $||N_X(s,t)||$ dA
+    \end{wtheorem}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{wtheorem}{Vector Surface Integrals}{14cm}
+        Let surface S be parametrized by smooth X(s,t):
+        D $\subset$ $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}^3$ and
+        vector field F(x,y,z): S $\subset$ R $\subset$ $\mathbb{R}^3$
+        $\rightarrow$ $\mathbb{R}^3$ be continuous.
+
+        Then the {\color{lblue} vector surface integral} of F along X(s,t):
+
+        \hspace{0.5cm}
+        $\int \int_{X(s,t)}$ F $\cdot$ dS
+        = $\int \int_D$ F(X(s,t)) $\cdot$ $N_X(s,t)$ dA
+        
+        The vector surface integral is also called the
+        {\color{lblue} flux of F across S = X(s,t)}.
+    \end{wtheorem}
+
+    \newpage
 
 
 
 
 
+\subsection{ Stokes's \& Gauss's Theorems }
+
+    \begin{definition}{Induced Orientation}{14cm}
+        Let S be a bounded, piecewise smooth surface in $\mathbb{R}^3$
+        with boundary defined by a simple, closed curve C.
+        Let unit normal vector n be orthogonal to S at a point
+        so surface S has an orientation of n.
+
+        Then for points on S, let there be a spinning disc with a direction
+        such that the curl is in the same direction as n at such points.
+
+        Then C has an {\color{lblue} induced orientation} from S
+        if the orientation of curve C is in the same direction as
+        the spinning discs of points near C.
+    \end{definition}
+
+    \vspace{0.5cm}
 
 
 
+    \begin{wtheorem}{Stokes's Theorem}{14cm}
+        Let S be a bounded, piecewise smooth, oriented surface in $\mathbb{R}^3$
+        with boundary defined by finitely many simple, closed, piecewise $C^1$
+        curves C = \{$C_1,...,C_m$\} which have an induced orientation from S.
+
+        Then for $C^1$ vector field F(x,y,z): S $\subset$ R $\subset$
+        $\mathbb{R}^3$ $\rightarrow$ $\mathbb{R}^3$:
+
+        \hspace{0.5cm}
+        $\int \int_S$ $\nabla \times F$ $\cdot$ dS
+        = $\oint_C$ F $\cdot$ ds
+    \end{wtheorem}
+
+    \vspace{0.5cm}
 
 
 
+    \begin{wtheorem}{Gauss's Theorem: Divergence Theorem in $\mathbb{R}^3$}{14cm}
+        Let D be a bounded region in $\mathbb{R}^3$ with boundary defined
+        by finitely many closed, piecewise smooth surfaces S = \{$S_1,...,S_m$\}
+        oriented with unit normal vectors that points away from D.
 
+        Then for $C^1$ vector field F(x,y,z): D $\subset$ R $\subset$
+        $\mathbb{R}^3$ $\rightarrow$ $\mathbb{R}^3$:
 
-
-
-
-
+        \hspace{0.5cm}
+        $\oiint_S$ F $\cdot$ dS
+        = $\int \int \int_D$ $\nabla \cdot F$ dV
+    \end{wtheorem}
 
 
 
