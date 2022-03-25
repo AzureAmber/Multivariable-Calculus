@@ -15,10 +15,10 @@
         = $f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2
             + ... + \frac{f^{(k)}(a)}{k!}(x-a)^k$
 
-        Then for h $>$ 0, there is a x $\in$ [a,a+h] such that:
+        Then for h $>$ 0, there is a x $\in$ (a,a+h) such that:
 
         \hspace{0.5cm}
-        f(a+h) = $p_k(a+h)$ + $\frac{f^{(n)}(x)}{(k+1)!}h^{k+1}$
+        f(a+h) = $p_k(a+h)$ + $\frac{f^{(k+1)}(x)}{(k+1)!}h^{k+1}$
     \end{wtheorem}
 
     \begin{proof}
@@ -85,7 +85,7 @@
 
     \begin{wtheorem}{Taylor's Theorem for multiple variables}{14cm}
         Let f: X $\subset$ $\mathbb{R}^n$ $\rightarrow$ $\mathbb{R}$
-        be $C^2$. Then for a $\in$ X:
+        be $C^{k+1}$. Then for a $\in$ X:
 
         \hspace{0.5cm}
         $p_k(x)$
@@ -98,15 +98,121 @@
             + $\frac{1}{k!} \sum_{i_1,...,i_k=1}^n
                 f_{x_{i_1}...x_{i_k}}(a)(x_{i_1} - a_{i_1})...(x_{i_k} - a_{i_k})$
 
-        Then:
+        Then for $h > 0$:
 
         \hspace{0.5cm}
-        f(x) = $p_k(x)$ + $R(a)$
+        f(a+h) = $p_k(a+h)$ + $R(a)$
         \hspace{1cm}
         where $\lim_{x \rightarrow a}$ $\frac{R(a)}{||x-a||}$ = 0
     \end{wtheorem}
 
+    \begin{proof}
+        Let g(t) = f(a+t(x-a)).
+        Since f is $C^{k+1}$, then each $D^if$ for i = \{1,...,k+1\} exist
+        and by {\color{red} theorem 2.3.10}:
+
+        \hspace{0.5cm}
+        $g'(t)$
+        = Df(a+t(x-a)) (x-a)
+        = $\sum_{i=1}^n$ $f_{x_i}(a+t(x-a))(x_i-a_i)$
+
+        \hspace{0.5cm}
+        $g''(t)$
+        = $\sum_{i=1}^n \sum_{j=1}^n$
+            $f_{x_ix_j}(a+t(x-a))(x_j-a_j)(x_i-a_i)$
+
+        \hspace{0.5cm}
+        $g'''(t)$
+        = $\sum_{i=1}^n \sum_{j=1}^n \sum_{k=1}^n$
+            $f_{x_ix_jx_k}(a+t(x-a))(x_k-a_k)(x_j-a_j)(x_i-a_i)$
+
+        \hspace{0.5cm}
+        etc
+
+        Since f is $C^{k+1}$, then g is $C^{k+1}$ and by {\color{red} theorem 3.1.1},
+        there is a t $\in$ (0,1) such that:
+
+        \hspace{0.5cm}
+        $g(1)$ = $g(0) + g'(0)1 + \frac{g''(0)}{2!}1^2
+                    + ... + \frac{g^{(k)}(0)}{k!}1^k
+                    + \frac{g^{(k+1)}(t)}{(k+1)!}1^{k+1}$
+
+        \hspace{0.5cm}
+        f(x) = f(a) + $\sum_{i=1}^n$ $f_{x_i}(a)(x_i-a_i)$
+                + $\frac{1}{2!} \sum_{i=1}^n \sum_{j=1}^n$
+                    $f_{x_ix_j}(a)(x_j-a_j)(x_i-a_i)$
+
+            \hspace{1.7cm}
+            + ... +
+            $\frac{1}{k!} \sum_{i_1,...,i_k=1}^n
+                f_{x_{i_1}...x_{i_k}}(a)(x_{i_1} - a_{i_1})...(x_{i_k} - a_{i_k})$
+            + R(a)
+    \end{proof}
+
     \newpage
+
+
+
+    \begin{example}
+        Let f(x,y,z) = $e^x \sin(yz)$.
+        
+        Approximate f(0.1,$\frac{\pi}{2}+0.01$,1.05)
+        using a 2nd degree Taylor Series.
+    \end{example}
+
+    \begin{tbox}
+        f(0,$\frac{\pi}{2}$,1)
+        = 1
+
+        Df(0,$\frac{\pi}{2}$,1)
+        = $\begin{bmatrix}
+            e^x \sin(yz)
+            & z e^x \cos(yz)
+            & y e^x \cos(yz)
+        \end{bmatrix}$
+        = $\begin{bmatrix}
+            1 & 0 & 0
+        \end{bmatrix}$
+
+        $D^2$f(0,$\frac{\pi}{2}$,1)
+        = $\begin{bmatrix}
+            e^x \sin(yz)
+            & z e^x \cos(yz)
+            & y e^x \cos(yz) \\
+
+            z e^x \cos(yz)
+            & -z^2 e^x \sin(yz)
+            & -yz e^x \sin(yz) \\
+
+            y e^x \cos(yz)
+            & -yz e^x \sin(yz)
+            & -y^2 e^x \sin(yz)
+        \end{bmatrix}$
+        = $\begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & -1 & -\frac{\pi}{2} \\
+            0 & -\frac{\pi}{2} & -\frac{\pi^2}{4}
+        \end{bmatrix}$
+
+        f(0.1,$\frac{\pi}{2}+0.01$,1.05)
+        $\approx$ $1 + (1*0.1 + 0*0.01 + 0*0.05)$
+
+        \hspace{4cm}
+        + $\frac{1}{2}(1*0.1^2 + 0*0.1*0.01 + 0*0.1*0.05$
+
+                        \hspace{5cm}
+                        $+ 0*0.01*0.1 - 1*0.01^2 - \frac{\pi}{2}*0.01*0.05$
+
+                        \hspace{5cm}
+                        $+ 0*0.05*0.1 - \frac{\pi}{2}*0.05*0.01
+                                        - \frac{\pi^2}{4}*0.05^2)$
+                        $\approx$ 1.1011
+
+        Actual f(0.1,$\frac{\pi}{2}+0.01$,1.05) $\approx$ 1.1008
+        so the estimate is pretty close.
+    \end{tbox}
+
+    \vspace{0.5cm}
 
 
 
@@ -210,6 +316,46 @@
 
 
 
+    \begin{example}
+        Let f(x,y) = $3x^2y + y^3 - 3x^2 - 3y^2 + 1$.
+        Find and label all critical points.
+    \end{example}
+
+    \begin{tbox}
+        Df(x,y)
+        = $\begin{bmatrix}
+            6xy - 6x
+            & 3x^2 + 3y^2 - 6y
+        \end{bmatrix}$
+        = $\begin{bmatrix}
+            0 & 0 
+        \end{bmatrix}$.
+
+        Thus, 4x(y-1) = 0 so x = 0 or y = 1.
+
+        Thus, $3x^2 + 3y^2 - 6y$ = 0 for (x,y) = (0,0), (0,2), (1,1), and (-1,1).
+
+        $D^2$f(x,y)
+        = $\begin{bmatrix}
+            6y - 6 & 6x \\
+            6x & 6y - 6
+        \end{bmatrix}$
+
+        At (0,0), det($D^2$f(0,0)) = 36 and $f_{xx}(0.0)$ = -6
+        so local maximum.
+
+        At (0,2), det($D^2$f(0,0)) = 36 and $f_{xx}(0.0)$ = 6
+        so local minimum.
+
+        At (1,1), det($D^2$f(0,0)) = -36 so saddle point.
+
+        At (-1,1), det($D^2$f(0,0)) = -36 so saddle point.
+    \end{tbox}
+
+    \vspace{0.5cm}
+
+
+
     \begin{definition}{Compactness}{14cm}
         Let set X $\subset$ $\mathbb{R}^n$.
 
@@ -251,6 +397,77 @@
         f($x_{\text{min}}$) $\leq$ f(x) $\leq$ f($x_{\text{max}}$)
     \end{wtheorem}
 
+    \vspace{0.5cm}
+
+
+
+    \begin{example}
+        Let f(x,y) = $x^2 - xy + y^2 + 1$ where (x,y) $\in$ [-2,2] $\times$ [-2,2].
+        
+        Find the smallest and largest f(x,y) over [-2,2] $\times$ [-2,2].
+    \end{example}
+
+    \begin{tbox}
+        For local extrema:
+        
+        \hspace{0.5cm}
+        Df(x,y)
+        = $\begin{bmatrix}
+            2x - y & -x + 2y
+        \end{bmatrix}$
+        = $\begin{bmatrix}
+            0 & 0
+        \end{bmatrix}$
+        so (x,y) = (0,0)
+        with f(0,0) = 1.
+
+        For boundary points, take the lines:
+
+        \begin{enumerate}[label=(\alph*), leftmargin=1cm, itemsep=0.1cm]
+            \item x = -2 for y $\in$ [-2,2]
+
+                \hspace{0.5cm}
+                f(-2,y)
+                = $5 + 2y + y^2$
+                = $(y+1)^2+4$
+                so (x,y) = (-2,-1) with f(-2,-1) = 4
+
+            \item x = 2 for y $\in$ [-2,2]
+
+                \hspace{0.5cm}
+                f(2,y)
+                = $5 - 2y + y^2$
+                = $(y-1)^2+4$
+                so (x,y) = (2,1) with f(2,1) = 4
+
+            \item y = -2 for x $\in$ [-2,2]
+
+                \hspace{0.5cm}
+                f(x,-2)
+                = $x^2 + 2x + 5$
+                = $(x+1)^2+4$
+                so (x,y) = (-1,-2) with f(-1,-2) = 4
+
+            \item y = 2 for x $\in$ [-2,2]
+
+                \hspace{0.5cm}
+                f(x,2)
+                = $x^2 - 2x + 5$
+                = $(x-1)^2+4$
+                so (x,y) = (1,2) with f(1,2) = 4
+        \end{enumerate}
+
+        For endpoints,
+        f(-2,-2) = 5,
+        f(-2,2) = 13,
+        f(2,-2) = 13,
+        f(2,2) = 5.
+
+        min(f(x,y)) = 1 at (x,y) = (0,0)
+        \hspace{0.5cm}
+        max(f(x,y)) = 13 at (x,y) = (-2,2),(2,-2)
+    \end{tbox}
+
     \newpage
 
 
@@ -270,6 +487,59 @@
         \hspace{0.5cm}
         $\nabla f(x_0)$ = $\lambda$ $\nabla g(x_0)$
     \end{wtheorem}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{example}
+        Let f(x,y,z) = 2xy + 2yz + xz
+        where xyz = 4. Find the minimum of f(x,y,z).
+    \end{example}
+
+    \begin{tbox}
+        $\nabla f(x,y,z)$
+        = $\begin{bmatrix}
+            2y+z \\
+            2x+2z \\
+            2y+x
+        \end{bmatrix}$
+        = $\lambda$ $\nabla g(x,y,z)$
+        = $\begin{bmatrix}
+            \lambda yz \\
+            \lambda xz \\
+            \lambda xy
+        \end{bmatrix}$
+
+        Then, z-x = $\lambda y(z-x)$ so x = z or y = $\frac{1}{\lambda}$
+
+        \hspace{0.5cm}
+        If x = z, then 4x = $\lambda x^2$ so x = 0 or x = $\frac{4}{\lambda}$.
+
+        \hspace{1cm}
+        If x = 0, then 2y + 0 = $\lambda 0y$ = 0 so y = 0. Thus, (x,y,z) = (0,0,0).
+
+        \hspace{1cm}
+        If x = $\frac{4}{\lambda}$, then
+        2y + $\frac{4}{\lambda}$ = $\lambda \frac{4}{\lambda} y$ = 4y
+        so y = $\frac{2}{\lambda}$. Thus,
+        $(\frac{4}{\lambda},\frac{2}{\lambda},\frac{4}{\lambda})$.
+
+        \hspace{0.5cm}
+        If y = $\frac{1}{\lambda}$, then $\frac{2}{\lambda} + z$ = z
+        which is impossible.
+
+        Since $\nabla f(0,0,0)$ = 0, then (x,y,z) $\not =$ (0,0,0)
+        so the only (x,y,z)
+        = $(\frac{4}{\lambda},\frac{2}{\lambda},\frac{4}{\lambda})$.
+
+        Thus, 4 = xyz
+        = $\frac{4}{\lambda} \frac{2}{\lambda} \frac{4}{\lambda}$
+        = $\frac{32}{\lambda^3}$
+        so $\lambda$ = 2.
+        
+        Thus, (x,y,z) = (2,1,2) and the minimum f(x,y,z) = 4 + 4 + 4 = 12.
+    \end{tbox}
 
     \vspace{0.5cm}
 

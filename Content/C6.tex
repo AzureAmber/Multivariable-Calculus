@@ -64,7 +64,74 @@
         $\int \int_D$ $\sqrt{f_x^2 + f_y^2 + 1}$ dA
     \end{wtheorem}
 
+    \begin{proof}
+        Let P = \{$s_0,...,s_n$\} $\times$ \{$t_0,...,t_n$\}
+        be a partition of region D.
+        For each $\Delta s_i$ $\times$ $\Delta t_j$, choose
+        a point $(s_i^*,t_j^*)$ $\in$ $[s_{i-1},s_i] \times [t_{j-1},t_j]$.
+        Let S be the set of all points $(s_i^*,t_j^*)$.
+
+        Then for each $\Delta s_i$ $\times$ $\Delta t_j$,
+        the $||T_s(s_i^*,t_j^*)\Delta s_i \times T_t(s_i^*,t_j^*)\Delta t_i||$
+        is an approximate area for the surface at
+        $\Delta s_i$ $\times$ $\Delta t_j$ $\in$ D.
+        Thus:
+
+        \hspace{0.5cm}
+        Surface Area
+        = $\underset{||P|| \rightarrow 0}{\lim}$ $\sum_{i,j=1}^n$
+            $||T_s(s_i^*,t_j^*)\Delta s_i \times T_t(s_i^*,t_j^*)\Delta t_i||$
+
+        \hspace{2.9cm}
+        = $\underset{||P|| \rightarrow 0}{\lim}$ $\sum_{i,j=1}^n$
+            $||T_s(s_i^*,t_j^*) \times T_t(s_i^*,t_j^*)||\Delta s_i\Delta t_i$
+        = $\int \int_D$ $|| N_X(s,t) ||$ dA
+    \end{proof}
+
     \vspace{0.5cm}
+
+
+
+    \begin{example}
+        Prove that the surface area of a sphere of radius R is $4\pi R^2$.
+    \end{example}
+
+    \begin{tbox}
+        Using spherical coordinates,
+        x = $R \sin(\phi) \cos(\theta)$ , y = $R \sin(\phi) \sin(\theta)$ ,
+        and z = $R \cos(\phi)$ for $\phi$ $\in$ $[0,\pi]$
+        and $\theta$ $\in$ $[0,2\pi]$. Let X($\theta,\phi$) be
+        a parametrization of the sphere. Then:
+
+        \hspace{0.5cm}
+        $N_X(\theta,\phi)$
+        = $\begin{vmatrix}
+            e_1 & e_2 & e_3 \\
+            
+            -R \sin(\phi) \sin(\theta)
+            & R \sin(\phi) \cos(\theta)
+            & 0 \\
+
+            R \cos(\phi) \cos(\theta)
+            & R \cos(\phi) \sin(\theta)
+            & -R \sin(\phi) \\
+        \end{vmatrix}$
+        
+        \hspace{2.2cm}
+        = $(-R^2 \sin^2(\phi) \cos(\theta), -R^2 \sin^2(\phi) \sin(\theta) ,
+            -R^2 \sin(\phi) \cos(\phi))$
+
+        
+        $\int_0^{2\pi} \int_0^{\pi}$
+            $|| (-R^2 \sin^2(\phi) \cos(\theta), -R^2 \sin^2(\phi) \sin(\theta) ,
+            -R^2 \sin(\phi) \cos(\phi)) ||$ d$\phi$d$\theta$
+    
+        = $\int_0^{2\pi} \int_0^{\pi}$ $R^2 \sin(\phi)$ d$\phi$d$\theta$
+        = $\int_0^{2\pi}$ $2R^2$ d$\theta$
+        = $4\pi R^2$
+    \end{tbox}
+
+    \newpage
 
 
 
@@ -72,7 +139,7 @@
 
 \subsection{ Surface Integrals }
 
-    \begin{wtheorem}{Scalar Surface Integrals}{14cm}
+    \begin{definition}{Scalar Surface Integrals}{14cm}
         Let surface S be parametrized by smooth X(s,t):
         D $\subset$ $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}^3$ and
         
@@ -84,13 +151,38 @@
         \hspace{0.5cm}
         $\int \int_{X(s,t)}$ f dS
         = $\int \int_D$ f(X(s,t)) $||N_X(s,t)||$ dA
-    \end{wtheorem}
+    \end{definition}
 
     \vspace{0.5cm}
 
 
 
-    \begin{wtheorem}{Vector Surface Integrals}{14cm}
+    \begin{example}
+        Let f(x,y,z) = 6xy. Find the scalar surface integral of f along
+        the surface x+y+z=1 in the first octant.
+    \end{example}
+
+    \begin{tbox}
+        Let X(s,t) = (s,t,1-s-t) for s $\in$ [0,1] and t $\in$ [0,1-s].
+
+        \hspace{0.5cm}
+        $X_s(s,t)$ = (1,0,-1)
+        \hspace{1cm}
+        $X_t(s,t)$ = (0,1,-1)
+        \hspace{1cm}
+        $N_X(s,t)$ = (1,1,1)
+
+        $\int \int_{X(s,t)}$ f dS
+        = $\int_0^1 \int_0^{1-s}$ 6st $\sqrt{1^2 + 1^2 + 1^2}$ dtds
+        = $3\sqrt{3} \int_0^1$ $s - 2s^2 + s^3$ ds
+        = $\frac{\sqrt{3}}{4}$
+    \end{tbox}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{definition}{Vector Surface Integrals}{14cm}
         Let surface S be parametrized by smooth X(s,t):
         D $\subset$ $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}^3$ and
         vector field F(x,y,z): S $\subset$ R $\subset$ $\mathbb{R}^3$
@@ -101,10 +193,274 @@
         \hspace{0.5cm}
         $\int \int_{X(s,t)}$ F $\cdot$ dS
         = $\int \int_D$ F(X(s,t)) $\cdot$ $N_X(s,t)$ dA
-        
-        The vector surface integral is also called the
+
+        \vspace{0.3cm}
+
+        {\color{red} Physical Understanding: Vector Surface Integrals
+        = Divergence of Fluid}
+
+        \hspace{0.5cm}
+        \begin{minipage}{13.5cm}
+            Let F measure the flow of water.
+
+            \hspace{0.5cm}
+            $\int \int_D$ F(X(s,t)) $\cdot$ $N_X(s,t)$ dA
+            = $\int \int_D$
+                F(X(s,t)) $\cdot$
+                $\frac{N_X(s,t)}{||N_X(s,t)||}$ $||N_X(s,t)||$ dA
+
+            \begin{itemize}[leftmargin=0.5cm, itemsep=0.01cm]
+                \item F(X(s,t)) $\cdot$ $\frac{N_X(s,t)}{||N_X(s,t)||}$
+                    = $||F(X(s,t))||$
+                        $\scriptstyle \frac{||N_X(s,t)||}{||N_X(s,t)||}$
+                        $\cos(\theta)$
+                    = $||F(X(s,t))||$ $\cos(\theta)$
+                    is the component of F that moves in direction of $N_x(s,t)$
+                    which is orthogonal to F(X(s,t)).
+
+                \item $||N_X(s,t)||$ dA is the change in surface area
+            \end{itemize}
+
+            Thus, $\int \int_D$
+                F(X(s,t)) $\cdot$
+                $\frac{N_X(s,t)}{||N_X(s,t)||}$ $||N_X(s,t)||$ dA
+            is the total change in fluid across the surface X(s,t).
+            Thus, the vector surface integral is also called the
         {\color{lblue} flux of F across S = X(s,t)}.
+        \end{minipage}
+    \end{definition}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{example}
+        Let F(x,y,z) = $(x^3,-y^3,0)$ and surface S be bounded by
+        $x^2+y^2$ = 4 from z $\in$ [0,4] with circles at z=0,z=4.
+        Let the normal vectors be pointing outwards.
+
+        Find the vector surface integral of F along surface S.
+    \end{example}
+
+    \begin{tbox}
+        Surface z consist of 3 parts:
+        
+        \hspace{0.5cm}
+        $S_1$: $x^2+y^2=4$, z=0
+        \hspace{0.5cm}
+        $S_2$: $x^2+y^2=4$, z=4
+        \hspace{0.5cm}
+        $S_3$: $x^2+y^2=4$, z=[0,4]
+
+        Since the outward unit normal vector for $S_1$ = (0,0,1)
+        and $S_2$ = (0,0,-1), then:
+
+        \hspace{0.5cm}
+        $\int \int_S$ F $\cdot$ dS
+        = $\iint_{D_1}$ F($X_{S_1}$)$\cdot$$n_1$ dA
+            + $\iint_{D_2}$ F($X_{S_2}$)$\cdot$$n_2$ dA
+            + $\iint_{D_3}$ F($X_{S_3}$)$\cdot$$n_3$ dA
+        
+        \hspace{0.5cm}
+        = 0 + 0 + $\int \int_{D_3}$ F($X_{S_3}$) $\cdot$ $n_3$ dA
+        = $\int \int_{D_3}$ F($X_{S_3}$) $\cdot$ $n_3$ dA
+
+        $S_3$ can be parametrized X(s,t) = $(2\cos(s),2\sin(s),t)$
+        where s $\in$ $[0,2\pi]$, t $\in$ [0,4].
+
+        \hspace{0.5cm}
+        $N_X(s,t)$
+        = $(-2\sin(s),2\cos(s),0) \times (0,0,1)$
+        = $(2\cos(s),2\sin(s),0)$
+
+        which has the outward orientation so $N_X(s,t)$ is correct.
+
+        \hspace{0.5cm}
+        $\int \int_{D_3}$ F($X_{S_3}$) $\cdot$ $n_3$ dA
+        = $\int_0^{2\pi} \int_0^4$ $16\cos^4(s) - 16\sin^4(s)$ dtds
+
+        \hspace{4.5cm}
+        = $64 \int_0^{2\pi}$ $\cos(2s)$ ds = 0
+    \end{tbox}
+
+    \newpage
+
+
+
+    \begin{definition}{Reparametrization for Surfaces}{14cm}
+        Let $X_1$: $D_1$ $\subset$ $\mathbb{R}^2$
+        $\rightarrow$ $\mathbb{R}^3$ be a smooth parametrization of surface S.
+
+        Then smooth $X_2$: $D_2$ $\subset$ $\mathbb{R}^2$
+        $\rightarrow$ $\mathbb{R}^3$ is a {\color{lblue} reparametrization}
+        of $X_1$ if there is a 1-1 and onto v: $D_2$ $\rightarrow$ $D_1$ such that:
+
+        \hspace{0.5cm}
+        $X_2(s,t)$ = $X_1(v(s,t))$
+
+        \vspace{0.3cm}
+
+        Let $X_1(v_1,v_2)$ = $(x_1,y_1,z_1)$, $X_2(s,t)$ = $(x_2,y_2,z_2)$, and
+        $v(s,t)$ = $(v_1,v_2)$. Then:
+
+        \hspace{0.5cm}
+        $\begin{bmatrix}
+            \frac{\partial x_2}{\partial s} & \frac{\partial x_2}{\partial t} \\
+            \frac{\partial y_2}{\partial s} & \frac{\partial y_2}{\partial t} \\
+            \frac{\partial z_2}{\partial s} & \frac{\partial z_2}{\partial t}
+        \end{bmatrix}$
+        =
+        $\begin{bmatrix}
+            \frac{\partial x_1}{\partial v_1} & \frac{\partial x_1}{\partial v_2} \\
+            \frac{\partial y_1}{\partial v_1} & \frac{\partial y_1}{\partial v_2} \\
+            \frac{\partial z_1}{\partial v_1} & \frac{\partial z_1}{\partial v_2}
+        \end{bmatrix}
+        \begin{bmatrix}
+            \frac{\partial v_1}{\partial s} & \frac{\partial v_1}{\partial t} \\
+            \frac{\partial v_2}{\partial s} & \frac{\partial v_2}{\partial t}
+        \end{bmatrix}$
+        =
+        $\scriptstyle \begin{bmatrix}
+            \frac{\partial x_1}{\partial v_1}\frac{\partial v_1}{\partial s}
+                + \frac{\partial x_1}{\partial v_2}\frac{\partial v_2}{\partial s}
+            & \frac{\partial x_1}{\partial v_1}\frac{\partial v_1}{\partial t}
+                + \frac{\partial x_1}{\partial v_2}\frac{\partial v_2}{\partial t} \\
+            
+            \frac{\partial y_1}{\partial v_1}\frac{\partial v_1}{\partial s}
+                + \frac{\partial y_1}{\partial v_2}\frac{\partial v_2}{\partial s}
+            & \frac{\partial y_1}{\partial v_1}\frac{\partial v_1}{\partial t}
+                + \frac{\partial y_1}{\partial v_2}\frac{\partial v_2}{\partial t} \\
+
+            \frac{\partial z_1}{\partial v_1}\frac{\partial v_1}{\partial s}
+                + \frac{\partial z_1}{\partial v_2}\frac{\partial v_2}{\partial s}
+            & \frac{\partial z_1}{\partial v_1}\frac{\partial v_1}{\partial t}
+                + \frac{\partial z_1}{\partial v_2}\frac{\partial v_2}{\partial t} \\
+        \end{bmatrix}$
+
+        \hspace{0.5cm}
+        $X_{2s}$
+        = $X_{1v_1}\frac{\partial v_1}{\partial s}$
+            + $X_{1v_2}\frac{\partial v_2}{\partial s}$
+        \hspace{2cm}
+        $X_{2t}$
+        = $X_{1v_1}\frac{\partial v_1}{\partial t}$
+            + $X_{1v_2}\frac{\partial v_2}{\partial t}$
+
+        \hspace{0.5cm}
+        $N_{X_2}$
+        = $X_{2s}$ $\times$ $X_{2t}$
+        = $[X_{1v_1} \times X_{1v_2}]
+            (\frac{\partial v_1}{\partial s}\frac{\partial v_2}{\partial t}
+            - \frac{\partial v_2}{\partial s}\frac{\partial v_1}{\partial t})$
+        = $N_{X_1} \frac{\partial(v_1,v_2)}{\partial(s,t)}$
+
+        Thus:
+
+        \hspace{0.5cm}
+        {\color{lblue} Orientation preserving}:
+        \hspace{0.5cm}
+        $\frac{\partial(v_1,v_2)}{\partial(s,t)}$ $>$ 0
+
+        \hspace{0.5cm}
+        {\color{lblue} Orientation reversing}:
+        \hspace{0.75cm}
+        $\frac{\partial(v_1,v_2)}{\partial(s,t)}$ $<$ 0
+    \end{definition}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{wtheorem}{Scalar Surface Integrals are unaffected
+    by Reparametrization}{14cm}
+        Let surface S be parametrized by smooth $X_1(v_1,v_2)$: $D_1$ $\subset$
+        $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}^3$
+        and f(x,y,z): S $\subset$ R $\subset$ $\mathbb{R}^3$
+        $\rightarrow$ $\mathbb{R}^3$ be continuous.
+
+        Let $X_2(s,t)$: $D_2$ $\rightarrow$ $\mathbb{R}^3$
+        be a reparametrization of $X_1(s,t)$. Then:
+
+        \hspace{0.5cm}
+        $\int \int_{X_2(s,t)}$ f dS
+        = $\int \int_{X_1(s,t)}$ f dS
     \end{wtheorem}
+
+    \begin{proof}
+        $\int \int_{X_2(s,t)}$ f dS
+        = $\int \int_{D_2}$ f($X_2(s,t)$) $||N_{X_2(s,t)}||$ dA
+
+        \hspace{2.4cm}
+        = $\int \int_{D_2}$ f($X_1(v(s,t))$)
+            $||N_{X_1(v_1(s,t),v_2(s,t))}
+            \frac{\partial(v_1,v_2)}{\partial(s,t)}||$ dA
+        
+        \hspace{2.4cm}
+        = $\int \int_{D_2}$ f($X_1(v(s,t))$)
+            $||N_{X_1(v_1(s,t),v_2(s,t))}||$
+            $|\frac{\partial(v_1,v_2)}{\partial(s,t)}|$ dA
+
+        Then by {\color{red} theorem 4.3.2}:
+
+        \hspace{2.4cm}
+        = $\int \int_{D_1}$ f($X_1(v_1,v_2)$) $||N_{X_1(v_1,v_2)}||$ dA
+        = $\int \int_{X_1(s,t)}$ f dS
+    \end{proof}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{wtheorem}{Vector Surface Integrals are affected
+    by Reparametrization}{14cm}
+        Let surface S be parametrized by smooth $X_1(v_1,v_2)$: $D_1$ $\subset$
+        $\mathbb{R}^2$ $\rightarrow$ $\mathbb{R}^3$
+        and vector field F(x,y,z): S $\subset$ R $\subset$ $\mathbb{R}^3$
+        $\rightarrow$ $\mathbb{R}^3$ be continuous.
+
+        Let $X_2(s,t)$: $D_2$ $\rightarrow$ $\mathbb{R}^3$
+        be a reparametrization of $X_1(s,t)$. Then:
+
+        \begin{itemize}[itemsep=0.1cm]
+            \item If $X_2(s,t)$ is orientation preserving:
+            
+                \hspace{0.5cm}
+                $\int \int_{X_2(s,t)}$ F $\cdot$ dS
+                = $\int \int_{X_1(s,t)}$ F $\cdot$ dS
+            
+            \item If $X_2(s,t)$ is orientation reversing:
+                
+                \hspace{0.5cm}
+                $\int \int_{X_2(s,t)}$ F $\cdot$ dS
+                = $-\int \int_{X_1(s,t)}$ F $\cdot$ dS
+        \end{itemize}
+    \end{wtheorem}
+
+    \begin{proof}
+        $\int \int_{X_2(s,t)}$ F $\cdot$ dS
+        = $\int \int_{D_2}$ F($X_2(s,t)$) $\cdot$ $N_{X_2(s,t)}$ dA
+
+        \hspace{2.75cm}
+        = $\int \int_{D_2}$ F($X_1(v(s,t))$)
+                            $\cdot$ $N_{X_1(v_1(s,t),v_2(s,t))}$
+                            $\frac{\partial(v_1,v_2)}{\partial(s,t)}$ dA
+
+        If $X_2(s,t)$ is orientation preserving,
+        then by {\color{red} theorem 4.3.2}:
+
+        \hspace{2.75cm}
+        = $\int \int_{D_1}$ F($X_1(v_1,v_2)$)
+                            $\cdot$ $N_{X_1(v_1,v_2)}$ dA
+        = $\int \int_{X_1(s,t)}$ F $\cdot$ dS
+
+        If $X_2(s,t)$ is orientation preserving,
+        then by {\color{red} theorem 4.3.2}:
+
+        \hspace{2.75cm}
+        = $-\int \int_{D_1}$ F($X_1(v_1,v_2)$)
+                            $\cdot$ $N_{X_1(v_1,v_2)}$ dA
+        = $-\int \int_{X_1(s,t)}$ F $\cdot$ dS
+    \end{proof}
 
     \newpage
 
@@ -149,6 +505,43 @@
 
 
 
+    \begin{example}
+        Let F(x,y) = (x+y,x-y)
+        and S be the hemisphere $x^2+y^2+z^2$ = 1 for z $\geq$ 0.
+
+        Prove $\int \int_S$ $\nabla \times F$ $\cdot$ dS = 0.
+
+        Recall the example at 5.5.4 which used the example from 5.3.2.
+    \end{example}
+
+    \begin{tbox}
+        Suppose S has outward normal vectors. The case for inward normal vectors
+        is analogous.
+        Since S is a bounded, piecewise smooth, oriented surface with a
+        boundary C: $x^2+y^2$ = 1 with an induced orientation from S, then:
+
+        \hspace{0.5cm}
+        $\int \int_S$ $\nabla \times F$ $\cdot$ dS
+        = $\oint_C$ F $\cdot$ ds
+
+        Recall the example at 5.5.4 and 5.3.2
+        calculated that the $\oint_C$ F $\cdot$ ds = 0.
+
+        Thus, $\int \int_S$ $\nabla \times F$ $\cdot$ dS = 0.
+
+        Note that region S is irrelevant, only
+        its boundary is important.
+
+        Stokes' Theorem shows that given a $C^1$ vector field,
+        the vector surface integral of the curl of any surface
+        is equivalent to the vector surface integral of the curl
+        of another surface as long as the surfaces have the same boundary.
+    \end{tbox}
+
+    \newpage
+
+
+
     \begin{wtheorem}{Gauss's Theorem: Divergence Theorem in $\mathbb{R}^3$}{14cm}
         Let D be a bounded region in $\mathbb{R}^3$ with boundary defined
         by finitely many closed, piecewise smooth surfaces S = \{$S_1,...,S_m$\}
@@ -161,6 +554,70 @@
         $\oiint_S$ F $\cdot$ dS
         = $\int \int \int_D$ $\nabla \cdot F$ dV
     \end{wtheorem}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{example}
+        Recall the example at 6.2.2.
+
+        Let F(x,y,z) = $(x^3,-y^3,0)$ and surface S be bounded by
+        $x^2+y^2$ = 4 from z $\in$ [0,4] with circles at z=0,z=4.
+        Let the normal vectors be pointing outwards.
+
+        Justify why $\oiint_S$ F $\cdot$ dS = 0. 
+    \end{example}
+
+    \begin{tbox}
+        Since S is a boundary for bounded region D:
+        $x^2+y^2$ $\leq$ 4 from z $\in$ [0,4]
+        in which S is oriented with outward normal vectors, then:
+
+        \hspace{0.5cm}
+        $\oiint_S$ F $\cdot$ dS
+        = $\int \int \int_D$ $\nabla \cdot F$ dV
+        
+        Region D: $x^2 + y^2 \leq 4$ for z $\in$ [0,4] be
+        be redefined in cylindrical coordinates such that
+        r $\in$ [0,2], $\theta$ $\in$ $[0,2\pi]$, and z $\in$ [0,4].
+
+        \hspace{0.5cm}
+        $\nabla \cdot F$
+        = $\frac{\partial}{\partial x}x^3
+            + \frac{\partial}{\partial y}(-y^3)
+            + \frac{\partial}{\partial z}0$
+        = $3x^2 - 3y^2$
+        
+        Applying {\color{red} theorem 4.3.2}
+        for x = r cos($\theta$), y = r sin($\theta$), and z = z:
+
+        \hspace{0.5cm}
+        $\frac{\partial(x,y,z)}{\partial(r,\theta,z)}$
+        = $\begin{vmatrix}
+            \cos(\theta) & -r \sin(\theta) & 0 \\
+            \sin(\theta) & r \cos(\theta) & 0 \\
+            0 & 0 & 1
+        \end{vmatrix}$
+        = r
+
+        \hspace{0.5cm}
+        $\int \int \int_D$ $\nabla \cdot F$ dV
+        = $\int \int \int_{x^2 + y^2 \leq 4, z \in [0,4]}$ $\nabla \cdot F$ dV
+
+        \hspace{3.6cm}
+        = $\int_0^4 \int_0^2 \int_0^{2\pi}$
+            $[3\cos^2(\theta) - 3\sin^2(\theta)]$ r d$\theta$drdz
+
+        \hspace{3.6cm}
+        = $\int_0^4 \int_0^2 \int_0^{2\pi}$ $3r \cos(2\theta)$ d$\theta$drdz
+        = $\int_0^4 \int_0^2$ 0 drdz
+        = 0
+
+        which is exactly the value calculated in the previous example.
+    \end{tbox}
+
+    \vspace{0.5cm}
 
 
 

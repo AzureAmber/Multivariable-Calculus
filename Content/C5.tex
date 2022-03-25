@@ -72,6 +72,22 @@
 
 
 
+    \begin{example}
+        Find the length of the helix C(t) = (5cos(t),5sin(t),12t)
+        for t $\in$ $[0,2\pi]$.
+    \end{example}
+
+    \begin{tbox}
+        C'(t) = (-5sin(5),5cos(t),12)
+        so $||C'(t)||$ = $\sqrt{25\sin^2(t) + 25\cos^2(t) + 144}$ = 13.
+
+        L = $\int_0^{2\pi}$ 13 dt = $26\pi$
+    \end{tbox}
+
+    \vspace{0.5cm}
+
+
+
 
 
 \subsection{ Vector Fields }
@@ -102,7 +118,7 @@
         = $(\frac{\partial}{\partial x_1},...,\frac{\partial}{\partial x_n})$
     \end{definition}
 
-    \vspace{0.5cm}
+    \newpage
 
 
 
@@ -122,7 +138,7 @@
         If div(F) = 0 everywhere, then F is incompressible.
     \end{definition}
 
-    \newpage
+    \vspace{0.5cm}
 
 
 
@@ -265,9 +281,26 @@
 
 
 
+    \begin{example}
+        Let f(x,y) = xy.
+        
+        Find the scalar line integral of f along C(t)
+        = $(t,t^2)$ for t $\in$ [0,1]
+    \end{example}
+
+    \begin{tbox}
+        $\int_{C(t)}$ f ds
+        = $\int_0^1$ $t^3 \sqrt{1+4t^2}$ dt
+        = $[\frac{1}{32}(\frac{2}{5}(1+4t^2)^{\frac{5}{2}}
+                -\frac{2}{3}(1+4t^2)^{\frac{3}{2}})]_0^1$
+        = $\frac{5^{5/2}+1}{120}$
+    \end{tbox}
+
+    \vspace{0.5cm}
 
 
-    \begin{wtheorem}{Vector Line Integral}{14cm}
+
+    \begin{definition}{Vector Line Integral}{14cm}
         Let $C^1$ path C(t): [a,b] $\rightarrow$ $\mathbb{R}^n$
         and F: C([a,b]) $\subset$ X $\subset$ $\mathbb{R}^n$ $\rightarrow$
         $\mathbb{R}^n$ be continuous.
@@ -278,26 +311,252 @@
         \hspace{0.5cm}
         $\int_{C(t)}$ F $\cdot$ ds = $\int_a^b$ F(C(t)) $\cdot$ $C'(t)$ dt
 
-        If F: $\mathbb{R}^3$ $\rightarrow$ $\mathbb{R}^3$, let
-        F(x,y,z) = (M(x,y,z),N(x,y,z),P(x,y,z)) and
+        \vspace{0.3cm}
 
-        C(t) = (x(t),y(t),z(t)), then:
+
+
+        {\color{red} Physical Understanding \#1:
+        Vector Line Integrals = Total Work}
+
+        \hspace{0.5cm}
+        \begin{minipage}{13.5cm}
+            In physics, Work = Force * Change in distance in a direction d
+
+            \hspace{0.5cm}
+            W = $||F||$ $\cos(\theta)$ $||\Delta x||$ 
+            = $||F||$ $||\Delta x||$ $\cos(\theta)$
+            = F $\cdot$ $\Delta x$
+
+            Since $x'(t_0)$
+            = $\lim_{\Delta t \rightarrow 0}$
+                $\frac{x(\Delta t + t_0) - x(t_0)}{\Delta t}$
+            = $\lim_{\Delta t \rightarrow 0}$
+                $\frac{\Delta x}{\Delta t}$, then the work at $t_0$:
+
+            \hspace{0.5cm}
+            W $\approx$ $F(x(t_0))$ $\cdot$ x'($t_0$) $\Delta t$
+
+            So the total work for all points $t_0$ in a path:
+
+            \hspace{0.5cm}
+            $\sum_{t_0 \in \text{path}}$ $F(x(t_0))$ $\cdot$ x'($t_0$) $\Delta t$
+            $\approx$ $\int_a^b$ F(C(t)) $\cdot$ $C'(t)$ dt
+        \end{minipage}
+
+        \vspace{0.3cm}
+
+
+
+        {\color{red} Physical Understanding \#2:
+        Vector Line Integrals = Circulation of Fluid}
+
+        \hspace{0.5cm}
+        \begin{minipage}{13.5cm}
+            Let F measure the flow of a fluid
+
+            \hspace{0.5cm}
+            $\int_a^b$ F(C(t)) $\cdot$ $C'(t)$ dt
+            = $\int_a^b$ F(C(t)) $\cdot$ $\frac{C'(t)}{||C'(t)||}$ $||C'(t)||$ dt
+
+            \begin{itemize}[leftmargin=0.5cm, itemsep=0.01cm]
+                \item F(C(t)) $\cdot$ $\frac{C'(t)}{||C'(t)||}$
+                    = $||F(C(t))||$ $\frac{||C'(t)||}{||C'(t)||}$ $\cos(\theta)$
+                    = $||F(C(t))||$ $\cos(\theta)$
+                    is the component of F that moves in direction of C'(t)
+                    which is tangent to C(t)
+
+                \item $||C'(t)||$ dt is the change in arclength
+            \end{itemize}
+
+            Thus, $\int_a^b$ F(C(t)) $\cdot$
+                            $\frac{C'(t)}{||C'(t)||}$ $||C'(t)||$ dt
+            is the total change in fluid along C(t).
+
+            Thus, the vector line integral is also called the
+            {\color{lblue} circulation of F along C(t)}.
+        \end{minipage}
+
+        \vspace{0.3cm}
+
+
+
+        If F(x,y,z) = (M(x,y,z),N(x,y,z),P(x,y,z)) and C(t) = (x(t),y(t),z(t)):
 
         \hspace{0.5cm}
         $\int_{C(t)}$ F $\cdot$ ds
         = $\int_a^b$ M(x,y,z) dx + N(x,y,z) dy + P(x,y,z) dz
-
-        The vector line integral is also called the
-        {\color{lblue} circulation of F along C(t)}.
-    \end{wtheorem}
+    \end{definition}
 
     \vspace{0.5cm}
 
 
 
+    \begin{example}
+        Let F(x,y) = (x+y,x-y).
+        Find the vector line integral of F along $x^2+y^2$ = 1.
+    \end{example}
+
+    \begin{tbox}
+        C(t) = (cos(t),sin(t)) for t $\in$ $[0,2\pi]$.
+
+        $\int_{C(t)}$ F $\cdot$ ds
+        = $\int_0^{2\pi}$
+            $(\cos(t)+\sin(t),\cos(t)-\sin(t)) \cdot (-\sin(t),\cos(t))$ dt
+
+        \hspace{2cm}
+        = $\int_0^{2\pi}$ $-2\sin(t)\cos(t) + \cos^2(t) - \sin^2(t)$ dt
+
+        \hspace{2cm}
+        = $\int_0^{2\pi}$ $-\sin(2t) + \cos(2t)$ dt
+        = $[\frac{1}{2}\cos(2t) + \frac{1}{2}\sin(2t)]_0^{2\pi}$
+        = 0
+    \end{tbox}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{definition}{Reparametrization for Paths}{14cm}
+        Let $C_1$: [a,b] $\rightarrow$ $\mathbb{R}^n$ be a piecewise $C^1$ path.
+
+        Then piecewise $C^1$ path $C_2$: [c,d] $\rightarrow$ $\mathbb{R}^n$
+        is a {\color{lblue} reparametrization} of $C_1$ if there is a
+        1-1 and onto v: [c,d] $\rightarrow$ [a,b] such that:
+
+        \hspace{0.5cm}
+        $C_2(t)$ = $C_1(v(t))$
+
+        Thus, since continuous v(t) is 1-1 and onto, then either:
+
+        \hspace{0.5cm}
+        {\color{lblue} Orientation preserving}:
+        \hspace{0.5cm}
+        v(c) = a
+        and v(d) = b
+        \hspace{0.5cm}
+        so v'(t) $\geq$ 0
+        
+        \hspace{0.5cm}
+        {\color{lblue} Orientation reversing}:
+        \hspace{0.7cm}
+        v(c) = b
+        and v(d) = a
+        \hspace{0.5cm}
+        so v'(t) $\leq$ 0
+    \end{definition}
+
+    \newpage
+
+
+
+    \begin{wtheorem}{Scalar Line Integrals are unaffected
+    by Reparametrization}{14cm}
+        Let $C^1$ path $C_1(t)$: [a,b] $\rightarrow$ $\mathbb{R}^n$
+        and f: C([a,b]) $\subset$ X $\subset$ $\mathbb{R}^n$ $\rightarrow$
+        $\mathbb{R}$ be continuous.
+
+        Let $C^1$ path $C_2(t)$: [c,d] $\rightarrow$ $\mathbb{R}^n$
+        be a reparametrization of $C_1(t)$. Then:
+
+        \hspace{0.5cm}
+        $\int_{C_2(t)}$ f ds = $\int_{C_1(t)}$ f ds
+    \end{wtheorem}
+
+    \begin{proof}
+        $\int_{C_2(t)}$ f ds
+        = $\int_c^d$ f($C_2(t)$) $||C_2'(t)||$ dv
+        = $\int_c^d$ f($C_1(v(t))$) $||C_1'(v(t)) v'(t)||$ dt
+
+        \hspace{1.7cm}
+        = $\int_c^d$ f($C_1(v(t))$) $||C_1'(v(t))||$ $|v'(t)|$ dt
+
+        If v(t) is orientation preserving, then:
+
+        \hspace{0.5cm}
+        $\int_{C_2(t)}$ f ds
+        = $\int_c^d$ f($C_1(v(t))$)$||C_1'(v(t))|| v'(t)$ dt
+        = $\int_a^b$ f($C_1(v)$)$||C_1'(v)||$ dv
+
+        \hspace{2.35cm}
+        = $\int_{C_1(t)}$ f ds
+
+        If v(t) is orientation reversing, then:
+
+        \hspace{0.5cm}
+        $\int_{C_2(t)}$ f ds
+        = $\int_c^d$ $f(C_1(v(t)))||C_1'(v(t))|| \ [-v'(t)]$ dt
+        = $- \int_b^a$ $f(C_1(v))||C_1'(v)||$ dv
+
+        \hspace{2.35cm}
+        = $\int_a^b$ $f(C_1(v))||C_1'(v)||$ dv
+        = $\int_{C_1(t)}$ f ds
+    \end{proof}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{wtheorem}{Vector Line Integrals are affected by Reparametrization}{14cm}
+        Let $C^1$ path $C_1(t)$: [a,b] $\rightarrow$ $\mathbb{R}^n$
+        and F: $C_1$([a,b]) $\subset$ X $\subset$ $\mathbb{R}^n$ $\rightarrow$
+        $\mathbb{R}^n$ be continuous.
+
+        Let $C^1$ path $C_2(t)$: [c,d] $\rightarrow$ $\mathbb{R}^n$
+        be a reparametrization of $C_1(t)$. Then:
+
+        \begin{itemize}[itemsep=0.1cm]
+            \item If $C_2(t)$ is orientation preserving:
+            
+                \hspace{0.5cm}
+                $\int_{C_2(t)}$ F $\cdot$ ds = $\int_{C_1(t)}$ F $\cdot$ ds
+            
+            \item If $C_2(t)$ is orientation reversing:
+            
+                \hspace{0.5cm}
+                $\int_{C_2(t)}$ F $\cdot$ ds = $-\int_{C_1(t)}$ F $\cdot$ ds
+        \end{itemize}
+    \end{wtheorem}
+
+    \begin{proof}
+        $\int_{C_2(t)}$ F $\cdot$ ds
+        = $\int_c^d$ F($C_2(t)$) $\cdot$ $C_2'(t)$ dt
+        = $\int_c^d$ F($C_1(v(t))$) $\cdot$ $C_1'(v(t)) v'(t)$ dt
+
+        If v(t) is orientation preserving, then:
+
+        \hspace{0.5cm}
+        $\int_{C_2(t)}$ F $\cdot$ ds
+        = $\int_a^b$ F($C_1(v)$) $\cdot$ $C_1'(v)$ dv
+        = $\int_{C_1(t)}$ F $\cdot$ ds
+
+        If v(t) is orientation reversing, then:
+
+        \hspace{0.5cm}
+        $\int_{C_2(t)}$ F $\cdot$ ds
+        = $\int_b^a$ F($C_1(v)$) $\cdot$ $C_1'(v)$ dv
+        = $-\int_{C_1(t)}$ F $\cdot$ ds
+    \end{proof}
+
+    \newpage
+
 
 
 \subsection{ Green's Theorem }
+
+    \begin{definition}{Simple, Closed Curves}{14cm}
+        $C^1$ curve C(t): [a,b] $\rightarrow$ $\mathbb{R}^n$
+        is {\color{lblue} simple} if C(t) have no self-intersections
+        (i.e. 1-1) except possibly at endpoints.
+
+        \vspace{0.3cm}
+
+        C(t) is {\color{lblue} closed} if endpoints are the same
+        (i.e. C(a) = C(b)).
+    \end{definition}
+
+    \vspace{0.5cm}
+
+
 
     \begin{wtheorem}{Green's Theorem}{14cm}
         Let D be a closed, bounded region in $\mathbb{R}^2$
@@ -315,19 +574,179 @@
         = $\int \int_D$ $(\nabla \times F) \cdot e_3$ dA
     \end{wtheorem}
 
+    \begin{proof}
+        Note $\oint_{C(t)}$ F $\cdot$ ds = $\oint$ M(x,y) dx + N(x,y) dy.
+
+        First, split C = $C_1$ + $C_2$ such that $C_1$ is the curve below
+        and $C_2$ is the curve above.
+
+        Parametrize $C_1(x)$: [a,b] $\rightarrow$ $\mathbb{R}^2$
+        and $C_2(x)$: [a,b] $\rightarrow$ $\mathbb{R}^2$.
+
+        \hspace{0.5cm}
+        $\oint_{C}$ M(x,y) dx
+        = $\int_{C_1}$ M(x,y) dx - $\int_{C_2}$ M(x,y) dx
+        
+        \hspace{3.1cm}
+        = $\int_a^b$ M(x,$C_1(x)$) dx - $\int_a^b$ M(x,$C_2(x)$) dx
+
+        \hspace{3.1cm}
+        = $\int_a^b$ M(x,$C_1(x)$) - M(x,$C_2(x)$) dx
+
+        Since
+        $\int \int_D$ $-\frac{\partial M}{\partial y}$ dA
+        = $\int_a^b \int_{C_1(x)}^{C_2(x)}$ $-\frac{\partial M}{\partial y}$ dydx
+        = $\int_a^b$ $-M(x,C_2(x)) + M(x,C_1(x))$ dx
+
+        then $\oint_{C(t)}$ M(x,y) dx
+        = $\int \int_D$ $-\frac{\partial M}{\partial y}$ dA.
+
+        \vspace{0.3cm}
+
+        Next, split C = $C_3$ + $C_4$ such that $C_3$ is the curve to the left
+        and $C_4$ is the curve to the right.
+        Parametrize $C_3(y)$: [c,d] $\rightarrow$ $\mathbb{R}^2$
+        and $C_4(y)$: [c,d] $\rightarrow$ $\mathbb{R}^2$.
+
+        \hspace{0.5cm}
+        $\oint_{C}$ N(x,y) dy
+        = $-\int_{C_3}$ N(x,y) dy + $\int_{C_4}$ N(x,y) dy
+        
+        \hspace{3cm}
+        = $-\int_c^d$ N($C_3(y)$,y) dy + $\int_c^d$ N($C_4(y)$,y) dy
+
+        \hspace{3cm}
+        = $\int_c^d$ -N($C_3(y)$,y) + N($C_4(y)$,y) dy
+
+        Since
+        $\int \int_D$ $\frac{\partial N}{\partial x}$ dA
+        = $\int_c^d \int_{C_3(y)}^{C_4(y)}$ $\frac{\partial N}{\partial x}$ dxdy
+        = $\int_c^d$ $N(C_4(y),y) - N(C_3(y),y)$ dy
+
+        then $\oint_{C(t)}$ M(x,y) dx
+        = $\int \int_D$ $-\frac{\partial M}{\partial y}$ dA.
+
+        \vspace{0.3cm}
+
+        Thus, $\oint_C$ F $\cdot$ ds
+        = $\oint$ M(x,y) dx + N(x,y) dy
+        = $\int \int_D$ $-\frac{\partial M}{\partial y}
+                        + \frac{\partial N}{\partial x}$ dA
+        and since
+        
+        $\nabla \times F$
+        = $(0,0,\frac{\partial N}{\partial x}-\frac{\partial M}{\partial y})$,
+        then
+        $\int \int_D$ $-\frac{\partial M}{\partial y}
+                        + \frac{\partial N}{\partial x}$ dA
+        = $\int \int_D$ $(\nabla \times F) \cdot e_3$ dA
+    \end{proof}
+
     \vspace{0.5cm}
 
 
 
+    \begin{example}
+        Find the area of an ellipse $\frac{x^2}{a^2} + \frac{y^2}{b^2}$ = 1.
+    \end{example}
+
+    \begin{tbox}
+        The parametrization of an ellipse is C(t) = (a cos(t), b sin(t))
+        for t $\in$ $[0,2\pi]$.
+
+        Let F(x,y) = $\frac{-y}{2},\frac{x}{2}$. Thus:
+
+        \hspace{0.5cm}
+        Area
+        = $\int \int_{\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1}$ 1 dA
+        = $\int \int_{\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1}$
+            $-\frac{\partial}{y}\frac{-y}{2} + \frac{\partial}{x}\frac{x}{2}$ dA
+        = $\int_{C}$ F $\cdot$ ds
+
+        \hspace{0.5cm}
+        $\int_{C}$ F $\cdot$ ds
+        = $\int_0^{2\pi}$
+            ($-\frac{b}{2}$ sin(t), $\frac{a}{2}$ cos(t))
+            $\cdot$ (-a sin(t), b cos(t)) dt
+
+        \hspace{2.3cm}
+        = $\int_0^{2\pi}$ $\frac{ab}{2}\sin^2(t) + \frac{ab}{2} \cos^2(t)$ dt
+        = $\int_0^{2\pi}$ $\frac{ab}{2}$ dt
+        = $ab \pi$
+    \end{tbox}
+
+    \newpage
+
+
+
     \begin{wtheorem}{Gauss's Theorem: Divergence Theorem in $\mathbb{R}^2$}{14cm}
-        If Green's Thereom applies for region D and n is a outward normal
-        unit vector to D, then for $C^1$ vector field F(x,y) = (M(x,y),N(x,y)):
+        If Green's Thereom applies for region D where C is the boundary of D
+        and n is a outward unit normal vector to D, then for $C^1$ vector field
+        
+        F(x,y) = (M(x,y),N(x,y)):
 
         \hspace{0.5cm}
         $\oint_C$ F $\cdot$ n ds
         = $\int \int_D$ $\nabla \cdot F$ dA
-        
     \end{wtheorem}
+
+    \begin{proof}
+        Let C be parametrized by C(t) = $(x(t),y(t))$ for t $\in$ [a,b].
+        Then the outward unit normal vector at t is
+        n = $\frac{1}{\sqrt{(y'(t))^2+(-x'(t))^2}} (y'(t),-x'(t))$
+        = $\frac{1}{||C'(t)||} (y'(t),-x'(t))$.
+
+        \hspace{0.5cm}
+        $\oint_C$ F $\cdot$ n ds
+        = $\int_a^b$ (M(x(t),y(t)),N(x(t),y(t)))
+                        $\cdot$ $\frac{1}{||C'(t)||} (y'(t),-x'(t))$
+                        $||C'(t)||$ dt
+        
+        \hspace{2.6cm}
+        = $\int_a^b$ M(x(t),y(t))y'(t) dt - 
+            $\int_a^b$ N(x(t),y(t))x'(t) dt
+
+        \hspace{2.6cm}
+        = $\int_C$ M(x,y) dy - 
+            $\int_C$ N(x,y) dx
+        = $\int_C$ (-N,M) $\cdot$ ds
+
+        By {\color{red} theorem 5.4.2}:
+
+        \hspace{0.5cm}
+        $\int_C$ (-N,M) $\cdot$ ds
+        = $\int \int_D$ $\frac{\partial N}{\partial y}
+                        + \frac{\partial M}{\partial x}$ dA
+        = = $\int \int_D$ $\nabla \cdot F$ dA
+    \end{proof}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{example}
+        Let F(x,y) = (-y,x) and region D: $x^2 + y^2$ $\leq$ 1.
+        Find $\int \int_D$ div(F) dA.
+    \end{example}
+
+    \begin{tbox}
+        Since $\int \int_D$ div(F) dA
+        = $\int \int_D$ $\nabla \cdot F$ dA
+        where the boundary of D, C(t) = (cos(t),sin(t)) for t $\in$ $[0,2\pi]$
+        so C'(t) = (-sin(t),cos(t)) and n = (cos(t),sin(t)). Thus:
+
+        \hspace{0.5cm}
+        $\int \int_D$ div(F) dA
+        = $\oint_C$ F $\cdot$ n ds
+
+        \hspace{0.5cm}
+        = $\int_0^{2\pi}$ $(-\sin(t),\cos(t)) \cdot (\cos(t),\sin(t))$
+                            $\sqrt{(-\sin(t))^2+(\cos(t))^2}$ dt
+
+        \hspace{0.5cm}
+        = $\int_0^{2\pi}$ 0 dt
+        = 0
+    \end{tbox}
 
     \vspace{0.5cm}
 
@@ -353,12 +772,45 @@
 
     \begin{wtheorem}{Path Independence $\rightleftharpoons$
     $\int_{C_1}$ F $\cdot$ ds = 0}{14cm}
-        For continuous vector field F, F has path independent line integrals
-        if and only if $\int_{C}$ F $\cdot$ ds = 0
+        Continuous vector field F has path independent line integrals
+        if and only if
+        
+        $\oint_{C}$ F $\cdot$ ds = 0
         for all simple, piecewise $C^1$, closed curves.
     \end{wtheorem}
 
-    \vspace{0.5cm}
+    \begin{proof}
+        Suppose F has path independence.
+
+        For simple, piecewise $C^1$, closed curve C,
+        split C into $C_1(t)$,$C_2(t)$ for t $\in$ [a,b] such that
+        $C_1(a)$ = $C_2(b)$ and $C_1(b)$ = $C_2(a)$.
+        Since F has path independence:
+
+        \hspace{0.5cm}
+        $\oint_{C(t)}$ F $\cdot$ ds
+        = $\int_{C_1(t)}$ F $\cdot$ ds - $\int_{C_2(t)}$ F $\cdot$ ds
+        = 0
+
+        \rule[0.1cm]{15.1cm}{0.01cm}
+
+        Suppose $\oint_{C}$ F $\cdot$ ds = 0 for all simple, piecewise $C^1$,
+        closed curves C.
+
+        Then for simple, piecewise $C^1$ curves $C_1(t)$,$C_2(t)$
+        for t $\in$ [a,b] such that $C_1(a)$ = $C_2(a)$ and $C_1(b)$ = $C_2(b)$,
+        a simple, piecewise $C^1$, closed curve C = $C_1$ - $C_2$. Thus:
+
+        \hspace{0.5cm}
+        0 = $\oint_{C}$ F $\cdot$ ds
+        = $\int_{C_1}$ F $\cdot$ ds - $\int_{C_2}$ F $\cdot$ ds
+        \hspace{0.5cm}
+        $\Rightarrow$
+        \hspace{0.5cm}
+        $\int_{C_1}$ F $\cdot$ ds = $\int_{C_2}$ F $\cdot$ ds
+    \end{proof}
+
+    \newpage
 
 
 
@@ -374,8 +826,7 @@
 
 
 
-    \begin{wtheorem}{Conservative Vector Fields $\rightleftharpoons$
-    Path independence}{14cm}
+    \begin{wtheorem}{Fundamental Theorem of Line Integrals}{14cm}
         Let continuous vector field F: $\mathbb{R}^n$ $\rightarrow$ $\mathbb{R}^n$.
         Then F = $\nabla f$ if and only if F has path independent
         line integrals.
@@ -388,6 +839,96 @@
         $\int_C$ F $\cdot$ ds
         = f(B) - f(A)
     \end{wtheorem}
+
+    \begin{proof}
+        Suppose F = $\nabla f$ for some $C^1$ function f.
+
+        Then Df(x) exist so
+        $\frac{d}{dt} f(C(t))$ = Df(C(t)) C'(t) = $\nabla f(C(t))$ $\cdot$ C'(t)
+        for any piecewise $C^1$, oriented curve C.
+        Let C have initial point (a,A) and terminal point (b,B). Then:
+
+        \hspace{0.5cm}
+        $\int_C$ F $\cdot$ ds
+        = $\int_a^b$ $\nabla f(C(t))$ $\cdot$ C'(t) dt
+        = $\int_a^b$ $\frac{d}{dt} f(C(t))$ dt
+        = [f(C(t))]$_a^b$
+        = f(B) - f(A)
+
+        Since $\int_C$ F $\cdot$ ds = f(B) - f(A) regardless of
+        any piecewise $C^1$, oriented curve C(t), then F has path independence.
+
+        \rule[0.1cm]{15.1cm}{0.01cm}
+
+        Suppose F has path independence.
+
+        Take n = 2. The proof is analogous for any n.
+
+        For F = ($F_1,F_2$), let
+        f(x,y)
+        = $\int_C$ F $\cdot$ ds
+        = $\int_{(0,0)}^{(x,y)}$ $F_1$ dx + $F_2$ dy
+        where C is any piecewise $C^1$ curve from (0,0) to (x,y).
+        Since F is path independent, then:
+
+        \hspace{0.5cm}
+        $\int_{(0,0)}^{(x,y)}$ $F_1$ dx + $F_2$ dy
+        = [$\int_{(0,0)}^{(0,y)}$ $F_1$ dx + $F_2$ dy]
+            + [$\int_{(0,y)}^{(x,y)}$ $F_1$ dx + $F_2$ dy]
+
+        \hspace{0.5cm}
+        = $\int_0^y$ $F(0,t) \cdot (0,1)$ dt + $\int_0^x$ $F(t,y) \cdot (1,0)$ dt
+        = $\int_0^y$ $F_2(0,t)$ dt + $\int_0^x$ $F_1(t,y)$ dt
+
+        By the Fundamental Theorem of Calculus,
+        $\frac{\partial f}{\partial x}$ = 0 + $F_1(x,y)$ = $F_1(x,y)$.
+        Also:
+
+        \hspace{0.5cm}
+        $\int_{(0,0)}^{(x,y)}$ $F_1$ dx + $F_2$ dy
+        = [$\int_{(0,0)}^{(x,0)}$ $F_1$ dx + $F_2$ dy]
+            + [$\int_{(x,0)}^{(x,y)}$ $F_1$ dx + $F_2$ dy]
+
+        \hspace{0.5cm}
+        = $\int_0^x$ $F(t,0) \cdot (1,0)$ dt + $\int_0^y$ $F(x,t) \cdot (0,1)$ dt
+        = $\int_0^x$ $F_1(t,0)$ dt + $\int_0^y$ $F_2(x,t)$ dt
+
+        By the Fundamental Theorem of Calculus,
+        $\frac{\partial f}{\partial y}$ = 0 + $F_1(x,y)$ = $F_2(x,y)$.
+
+        Thus, $\nabla f$ = ($F_1,F_2$) = F.
+    \end{proof}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{example}
+        Recall the example at 5.3.2.
+        Let F(x,y) = (x+y,x-y).
+        
+        Find the vector line integral of F along
+        $x^2+y^2$ = 1 from (1,0) to (0,1).
+
+        Also, justify why $\int_C$ F $\cdot$ ds = 0 over the unit circle.
+    \end{example}
+
+    \begin{tbox}
+        Since F = $\nabla f$ where f = $\frac{1}{2}x^2 + xy - \frac{1}{2}y^2$,
+        then:
+
+        \hspace{0.5cm}
+        $\int_C$ F $\cdot$ ds
+        = f(0,1) - f(1,0) = $-\frac{1}{2}$ - $\frac{1}{2}$ = -1
+
+        Additionally, the vector line integral of F along the entire $x^2+y^2$ = 1
+        which is closed so initial point A is equal to terminal point B:
+
+        \hspace{0.5cm}
+        $\int_C$ F $\cdot$ ds = f(B) - f(A) = f(A) - f(A) = 0
+
+        which is exactly the value calculated in the previous example.
+    \end{tbox}
 
 
 

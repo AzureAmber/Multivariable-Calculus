@@ -222,22 +222,31 @@
         = $\int_a^b \int_c^d$ $f^{ext}(x,y)$ dydx
         = $\int_a^b \int_{y_1(x)}^{y_2(x)}$ f(x,y) dydx
 
-        \vspace{0.3cm}
-
-        Suppose D is a Type 2 elementary region.
-
-        Let region R = [a,b] $\times$ [c,d] be such that
-        a $\leq$ $x_1(y)$ $\leq$ x $\leq$ $x_2(y)$ $\leq$ b.
-
-        Since $f^{ext}(x,y)$ = 0 for any
-        (x,y) $\not \in$ D, then by {\color{red} theorem 4.1.5}:
-
-        \hspace{0.2cm}
-        $\int \int_D$ f(x,y) dA
-        = $\int \int_R$ $f^{ext}(x,y)$ dA
-        = $\int_c^d \int_a^b$ $f^{ext}(x,y)$ dxdy
-        = $\int_c^d \int_{x_1(y)}^{x_2(y)}$ f(x,y) dxdy
+        Proof is analogous for a Type 2 elementary region.
     \end{proof}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{example}
+        Let f(x,y) = x+y.
+        Find $\int \int_D$ f(x,y) dA for (x,y) $\in$ Triangle((0,0),(3,0),(0,4)).
+    \end{example}
+
+    \begin{tbox}
+        $\int \int_D$ f(x,y) dA
+        = $\int_0^3 \int_0^{\frac{4}{3}x}$ x+y dydx
+        = $\int_0^3$ $[xy+\frac{1}{2}y^2]_0^{\frac{4}{3}x}$ dx
+        = $\int_0^3$ $\frac{20}{9}x^2$ dx
+        = 20
+
+        \hspace{2.65cm}
+        = $\int_0^4 \int_{\frac{3}{4}y}^3$ x+y dxdy
+        = $\int_0^4$ $[\frac{1}{2}x^2+xy]_{\frac{3}{4}y}^3$ dy
+        = $\int_0^4$ $\frac{9}{2} + 3y - \frac{33}{32}y^2$ dy
+        = 20
+    \end{tbox}
 
     \vspace{0.5cm}
 
@@ -580,6 +589,29 @@
 
 
 
+    \begin{example}
+        Let f(x,y,z) = $x^2y + z$.
+        Find $\int \int \int_D$ f(x,y,z) dV for
+
+        (x,y,z) $\in$ TriangularPyramid((0,0,0),(3,0,0),(0,4,0),(3,4,5)).
+    \end{example}
+
+    \begin{tbox}
+        $\int \int \int_D$ f(x,y,z) dV
+        = $\int_0^3 \int_0^{\frac{4}{3}x} \int_0^{\frac{5}{4}y}$
+            $x^2y + z$ dzdydx
+
+        \hspace{3.3cm}
+        = $\int_0^3 \int_0^{\frac{4}{3}x}$
+            $\frac{5}{4}x^2y^2 + \frac{25}{32}y^2$ dydx
+        = $\int_0^3$ $\frac{80}{81}x^5 + \frac{50}{81}x^3$ dx
+        = $\frac{265}{2}$
+    \end{tbox}
+    
+    \vspace{0.5cm}
+
+
+
     \begin{definition}{Volume}{14cm}
         The {\color{lblue} volume} of a region R $\subset$ $\mathbb{R}^3$:
 
@@ -775,7 +807,7 @@
 
         \vspace{0.5cm}
 
-        The {\color{lblue} Jacobian} of T: $\mathbb{R}^3$
+        The Jacobian of T: $\mathbb{R}^3$
         $\rightarrow$ $\mathbb{R}^3$ where T(u,v,w) = (x,y,z):
 
         \hspace{0.5cm}
@@ -803,10 +835,10 @@
 
         \hspace{0.5cm}
         $\int \int \int_\text{T(D)}$ f(x,y,z) dV(x,y,z)
-
+        
         \hspace{0.5cm}
         = $\int \int \int_\text{D}$ f(x(u,v,w),y(u,v,w),z(u,v,w))
-            $|\frac{\partial(x,y)}{\partial(u,v)}|$ dV(u,v,w)
+            $|\frac{\partial(x,y,z)}{\partial(u,v,w)}|$ dV(u,v,w)
     \end{wtheorem}
 
     \begin{proof}
@@ -830,8 +862,6 @@
 
         \hspace{0.5cm}
         $\int \int_\text{T(D)}$ f(x,y) dA(x,y)
-
-        \hspace{0.5cm}
         = $\underset{||P|| \rightarrow 0}{\lim}$
             $\sum_{i,j=1}^n f(x_{ij},y_{ij}) \Delta x_i \Delta y_j$
 
@@ -854,6 +884,64 @@
         = $\int \int_\text{D}$ f(x(u,v),y(u,v))
             $|\frac{\partial(x,y)}{\partial(u,v)}|$ dA(u,v)
     \end{proof}
+
+    \vspace{0.5cm}
+
+
+
+    \begin{example}
+        Prove that the volume of a sphere with radius R is
+        V = $\frac{4}{3}\pi R^3$.  
+    \end{example}
+
+    \begin{tbox}
+        A sphere is $x^2 + y^2 + z^2$ = $R^2$.
+        Instead of rectangular, use spherical coordinates.
+
+        \hspace{0.5cm}
+        $p^2$ = $r^2 + z^2$ = $x^2 + y^2 + z^2$ = $R^2$
+        \hspace{1cm}
+        $\Rightarrow$
+        \hspace{1cm}
+        p = R
+
+        $\theta$ $\in$ $[0,2\pi]$ since a sphere in 2d is a circle
+        and $\phi$ $\in$ $[0,\pi]$ since for (x,y) = (0,0), then
+        z = [-R,R] where z = p cos($\phi$) = R cos($\phi$).
+
+        Since x = p sin($\phi$) cos($\theta$) ,
+        y = p sin($\phi$) sin($\theta$) ,
+        and x = p cos($\phi$), then:
+
+        \hspace{0.5cm}
+        $|\frac{\partial(x,y,z)}{\partial(p,\theta,\phi)}|$
+        = $|\begin{vmatrix}
+            \scriptstyle \sin(\phi) \cos(\theta)
+            & \scriptstyle -p \sin(\phi) \sin(\theta)
+            & \scriptstyle p \cos(\phi) \cos(\theta) \\
+
+            \scriptstyle \sin(\phi) \sin(\theta)
+            & \scriptstyle p \sin(\phi) \cos(\theta)
+            & \scriptstyle p \cos(\phi) \sin(\theta) \\
+
+            \scriptstyle \cos(\phi)
+            & \scriptstyle 0
+            & \scriptstyle -p \sin(\phi)
+        \end{vmatrix}|$
+        = $|-p^2 \sin(\phi)|$
+        = $p^2 \sin(\phi)$
+
+        Volume
+        = $\int \int \int_{x^2+y^2+z^2}$ 1 dV(x,y,z)
+        = $\int_0^R \int_0^{\pi} \int_0^{2\pi}$
+            $1 * p^2 \sin(\phi)$ $d\theta d\phi dp$
+
+        \hspace{1.3cm}
+        = $2\pi \int_0^R \int_0^{\pi}$
+            $p^2 \sin(\phi)$ $d\phi dp$
+        = $2\pi \int_0^R$ $2p^2$ $dp$ 
+        = $\frac{4}{3} \pi R^3$
+    \end{tbox}
 
 
 
